@@ -2,14 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './index.module.scss';
 
-const Options = ({ options, closeDropdown }) => (options.map((option) => (
+const SelectValue = (closeFunction, value, setSelectedOption, getVal) => {
+  closeFunction();
+  setSelectedOption(value);
+  getVal(value);
+};
+
+const Options = ({
+  options, closeDropdown, setSelectedOption, getVal,
+}) => (options.map((option) => (
   <div
-    role="button"
+    role="option"
+    aria-selected
     tabIndex={0}
-    onKeyDown={() => {}}
-    onClick={closeDropdown}
+    onKeyDown={() => { }}
+    onClick={() => { SelectValue(closeDropdown, option, setSelectedOption, getVal); }}
     className={styles.option}
-    value={option.value}
   >
     {option.name}
   </div>
@@ -19,10 +27,8 @@ export default Options;
 
 Options.propTypes = {
   closeDropdown: PropTypes.func,
-  select: PropTypes.func,
 };
 
 Options.defaultProps = {
   closeDropdown: () => {},
-  select: () => {},
 };
