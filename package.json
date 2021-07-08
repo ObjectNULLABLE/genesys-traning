@@ -20,7 +20,10 @@
       "react-app",
       "airbnb",
       "airbnb/hooks"
-    ]
+    ],
+    "rules":{
+      "linebreak-style":"off"
+    }
   },
   "browserslist": {
     "production": [
