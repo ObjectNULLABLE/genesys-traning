@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Input from '../../components/iNPUT/Input';
 
 function App() {
+  const [
+    text,
+    setText,
+  ] = useState('');
   return (
     <div className="App">
-      <Input />
+      {text}
+      <Input
+        onChange={(value) => { setText(value); }}
+        value="sdas"
+        type=""
+      />
     </div>
   );
 }
