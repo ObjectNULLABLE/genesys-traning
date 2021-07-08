@@ -1,10 +1,43 @@
 .button{
-    background-color: #DEB887;
+  background-color: #DEB887;
     height: 30px;
     width: 100px;
     border: none;
     border-radius: 20px;
     &:hover {
     background-color: #FFEBCD;
+  }
+}
+
+.primary{
+  background-color: #DEB887;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 20px;
+    &:hover {
+    background-color: #FFEBCD;
+  }
+}
+
+.secondary{
+  background-color: #808080;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 20px;
+    &:hover {
+    background-color: #D3D3D3;
+  }
+}
+
+.dark{
+   background-color: brown;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 20px;
+    &:hover {
+    background-color: #DEB887;
   }
 }
