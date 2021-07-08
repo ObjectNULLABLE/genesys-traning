@@ -19,13 +19,13 @@ function Header() {
   return (
     <Router>
       <header className={styles.header}>
-        <nav>
-          <Link to="/weapon">Weapons</Link>
-          <Link to="/qualities">Qualities</Link>
-          <Link to="/talents">Talents</Link>
-          <Link to="/skills">Skills</Link>
-          <Link to="/adversaries">Adversaries</Link>
-          <Link to="/sources">Sources</Link>
+        <nav className={styles.nav}>
+          <Link className={styles.navLink} to="/weapon">Weapons</Link>
+          <Link className={styles.navLink} to="/qualities">Qualities</Link>
+          <Link className={styles.navLink} to="/talents">Talents</Link>
+          <Link className={styles.navLink} to="/skills">Skills</Link>
+          <Link className={styles.navLink} to="/adversaries">Adversaries</Link>
+          <Link className={styles.navLink} to="/sources">Sources</Link>
         </nav>
       </header>
 
