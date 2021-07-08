@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Options from './options';
 
-const Select = ({ options }) => (
-  <div>
-    <button style={{ width: '100%' }} type="button">Show Parameters</button>
-    <Options options={options} show={false} />
-  </div>
-);
+const Select = ({ options }) => {
+  const [show, setShow] = useState(false);
+  return (
+    <div>
+      <button style={{ width: '100%' }} onClick={() => setShow(!show)} type="button">Show Parameters</button>
+      {show && <Options closeDropdown={() => setShow(false)} options={options} />}
+    </div>
+  );
+};
 export default Select;
 
 Select.propTypes = {

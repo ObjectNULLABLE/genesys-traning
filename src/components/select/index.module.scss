@@ -1,8 +1,16 @@
 .option{
-  border:2px dotted brown;
-  background-color:whitesmoke;
+  background-color:burlywood;
   padding:15px;
   text-align:center;
   font-family: Arial, Helvetica, sans-serif;
   font-size:20px;
+  &:hover{
+    background-color: brown;
+    color:whitesmoke;
+    border:1px solid black;
+  }
+}
+
+.showDropdown{
+  
 }
