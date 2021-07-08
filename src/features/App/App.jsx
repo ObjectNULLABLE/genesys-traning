@@ -1,26 +1,14 @@
 import React from 'react';
 
+import Select from '../../components/select/index';
+
 function App() {
   return (
     <div className="App">
+      <div style={{ width: '20%' }}>
+        <Select options={[{ name: 'Skills', value: 'skills' }, { name: 'Heroes', value: 'heroes' }, { name: 'Items', value: 'items' }]} />
+      </div>
 
-      <header className="App-header">
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
     </div>
   );
 }
