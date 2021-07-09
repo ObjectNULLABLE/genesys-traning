@@ -8,12 +8,12 @@ import Input from '../../components/Input';
 
 import Header from '../../components/header';
 import './style.scss';
-import Qual from '../../components/qualities';
-import Weapon from '../../components/weapon';
-import Talents from '../../components/talents';
-import Skills from '../../components/skills';
-import Adversaries from '../../components/adversaries';
-import Sources from '../../components/sources';
+import Qual from '../qualities';
+import Weapon from '../weapon';
+import Talents from '../talents';
+import Skills from '../skills';
+import Adversaries from '../adversaries';
+import Sources from '../sources';
 import Button from '../../components/button/index';
 import Select from '../../components/select';
 
