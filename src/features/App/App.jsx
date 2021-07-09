@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../components/button/index';
 
 const onClick = () => {
-  console.log('ghj');
+  console.log('hello');
 };
 
 function App() {
