@@ -2,17 +2,15 @@
     width: 100%;
     background-color:rgb(41, 15, 15);
     .nav{
-    width: 700px;
-    
-    height: 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+        width: 53rem;
+        height: 4rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
    
     
     .navLink {
-        
-        color: #ffff;
+        color: rgb(255, 255, 255);
         font-size: larger;
         width: 6rem;
         height: 100%;
@@ -20,12 +18,11 @@
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        background-color:rgb(41, 15, 15);
+        transition: all 0.5s;
             &:hover {
-                background-color: #fff;
-                color: #000;
+                background-color: rgb(255, 255, 255);
+                color: rgb(0, 0, 0);
             }
-        }
-        
+        } 
     }
 }
