@@ -1,26 +1,48 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+
+} from 'react-router-dom';
+import Header from '../../components/header';
+import './style.scss';
+import Qual from '../../components/qualities';
+import Weapon from '../../components/weapon';
+import Talents from '../../components/talents';
+import Skills from '../../components/skills';
+import Adversaries from '../../components/adversaries';
+import Sources from '../../components/sources';
 
 function App() {
   return (
-    <div className="App">
+    <div>
 
-      <header className="App-header">
-        <p>
-          Edit
-          {' '}
-          <code>src/App.js</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header />
+
+        <Switch>
+          <Route path="/weapon">
+            <Weapon />
+          </Route>
+          <Route path="/qualities">
+            <Qual />
+          </Route>
+          <Route path="/talents">
+            <Talents />
+          </Route>
+          <Route path="/skills">
+            <Skills />
+          </Route>
+          <Route path="/adversaries">
+            <Adversaries />
+          </Route>
+          <Route path="/sources">
+            <Sources />
+          </Route>
+        </Switch>
+      </Router>
+
     </div>
   );
 }
