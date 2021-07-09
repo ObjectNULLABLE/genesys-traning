@@ -3,8 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-
 } from 'react-router-dom';
+
 import Header from '../../components/header';
 import './style.scss';
 import Qual from '../../components/qualities';
@@ -13,6 +13,11 @@ import Talents from '../../components/talents';
 import Skills from '../../components/skills';
 import Adversaries from '../../components/adversaries';
 import Sources from '../../components/sources';
+import Button from '../../components/button/index';
+
+const onClick = () => {
+  console.log('ghj');
+};
 
 function App() {
   return (
@@ -20,7 +25,9 @@ function App() {
 
       <Router>
         <Header />
-
+        <div className="App">
+          <Button onClick={onClick} caption="caption" className="" />
+        </div>
         <Switch>
           <Route path="/weapon">
             <Weapon />
