@@ -1,8 +1,10 @@
+$themeColor : burlywood;
+$hoverColor: brown;
+
 .option{
-  background-color:burlywood;
+  background-color:$themeColor;
   padding:15px;
   text-align:center;
-  font-family: Arial, Helvetica, sans-serif;
   font-size:20px;
   &:hover{
     background-color: brown;
@@ -11,8 +13,17 @@
 }
 
 .showDropdown{
-  width:100%;
   text-align: center;
-  background-color: whitesmoke;
+  padding:20px 0px 20px 0px;
+  width:100%;
+  background-color: $themeColor;
   font-size: 30px;
+  &:hover{
+    background-color:$hoverColor ;
+    color:whitesmoke;
+  }
+}
+
+.Selector{
+  font-family: Arial, Helvetica, sans-serif;
 }

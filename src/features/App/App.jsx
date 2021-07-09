@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 
 import Select from '../../components/select/index';
 
+const options = [{ name: 'Skills', value: 'skills' }, { name: 'Heroes', value: 'heroes' }, { name: 'Items', value: 'items' }];
 function App() {
   const [val, setVal] = useState({});
   return (
     <div className="App">
       <div style={{ width: '20%' }}>
-        <Select options={[{ name: 'Skills', value: 'skills' }, { name: 'Heroes', value: 'heroes' }, { name: 'Items', value: 'items' }]} getVal={setVal} defaultValue={{ name: 'General', value: 'general' }} />
+        <Select
+          options={options}
+          selectValue={setVal}
+        />
         <h1>
-          value:
+          name:
           {val.name}
+          <br />
+          value:
+          {val.value}
         </h1>
       </div>
 
