@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
-import Input from '../../components/Input';
-
 import Header from '../../components/header';
 import './style.scss';
 import Qual from '../qualities';
@@ -14,30 +12,11 @@ import Talents from '../talents';
 import Skills from '../skills';
 import Adversaries from '../adversaries';
 import Sources from '../sources';
-import Button from '../../components/button/index';
-import Select from '../../components/select';
 
-const options = [{ name: 'Skills', value: 'skills' }, { name: 'Heroes', value: 'heroes' }, { name: 'Items', value: 'items' }];
 function App() {
-  const [
-    text,
-    setText,
-  ] = useState('');
   return (
     <Router>
       <Header />
-      {text}
-      <Input
-        onChange={(value) => { setText(value); }}
-        value="sdas"
-        type=""
-      />
-
-      <Button onClick={onClick} caption="caption" className="" />
-      <div>
-        <Select options={options} />
-      </div>
-
       <Switch>
         <Route path="/weapon">
           <Weapon />
