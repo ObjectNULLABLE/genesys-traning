@@ -14,19 +14,23 @@ import Skills from '../../components/skills';
 import Adversaries from '../../components/adversaries';
 import Sources from '../../components/sources';
 import Button from '../../components/button/index';
+import Select from '../../components/select';
 
 const onClick = () => {
   console.log('ghj');
 };
 
+const options = [{ name: 'Skills', value: 'skills' }, { name: 'Heroes', value: 'heroes' }, { name: 'Items', value: 'items' }];
 function App() {
   return (
     <div>
-
       <Router>
         <Header />
         <div className="App">
           <Button onClick={onClick} caption="caption" className="" />
+          <div>
+            <Select options={options} />
+          </div>
         </div>
         <Switch>
           <Route path="/weapon">
