@@ -17,10 +17,6 @@ import Sources from '../sources';
 import Button from '../../components/button/index';
 import Select from '../../components/select';
 
-const onClick = () => {
-  console.log('ghj');
-};
-
 const options = [{ name: 'Skills', value: 'skills' }, { name: 'Heroes', value: 'heroes' }, { name: 'Items', value: 'items' }];
 function App() {
   const [
