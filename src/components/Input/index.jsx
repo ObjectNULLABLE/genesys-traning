@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles.module.sсss';
+import styles from './styles.module.scss';
 
 function Input({ value, onChange, type }) {
   return (
