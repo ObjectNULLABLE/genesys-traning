@@ -1,0 +1,35 @@
+.button{
+  background-color: black;
+    height: 2rem;
+    width: 6.3rem;
+    color: white;
+    border: none;
+    border-radius: 1.3rem;
+    &:hover {
+    background-color: gray;
+  }
+
+&.primary{
+  background-color: #DEB887;
+    &:hover {
+    background-color: #FFEBCD;
+  }
+}
+
+&.secondary{
+  background-color: #808080;
+    &:hover {
+    background-color: #D3D3D3;
+  }
+}
+
+&.dark{
+  background-color: brown;
+    &:hover {
+    background-color: #DEB887;
+  }
+}
+
+}
+
+
