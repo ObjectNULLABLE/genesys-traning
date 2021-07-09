@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
+import Input from '../../components/Input';
 
 import Header from '../../components/header';
 import './style.scss';
@@ -22,39 +23,47 @@ const onClick = () => {
 
 const options = [{ name: 'Skills', value: 'skills' }, { name: 'Heroes', value: 'heroes' }, { name: 'Items', value: 'items' }];
 function App() {
+  const [
+    text,
+    setText,
+  ] = useState('');
   return (
-    <div>
-      <Router>
-        <Header />
-        <div className="App">
-          <Button onClick={onClick} caption="caption" className="" />
-          <div>
-            <Select options={options} />
-          </div>
-        </div>
-        <Switch>
-          <Route path="/weapon">
-            <Weapon />
-          </Route>
-          <Route path="/qualities">
-            <Qual />
-          </Route>
-          <Route path="/talents">
-            <Talents />
-          </Route>
-          <Route path="/skills">
-            <Skills />
-          </Route>
-          <Route path="/adversaries">
-            <Adversaries />
-          </Route>
-          <Route path="/sources">
-            <Sources />
-          </Route>
-        </Switch>
-      </Router>
+    <Router>
+      <Header />
+      {text}
+      <Input
+        onChange={(value) => { setText(value); }}
+        value="sdas"
+        type=""
+      />
 
-    </div>
+      <Button onClick={onClick} caption="caption" className="" />
+      <div>
+        <Select options={options} />
+      </div>
+
+      <Switch>
+        <Route path="/weapon">
+          <Weapon />
+        </Route>
+        <Route path="/qualities">
+          <Qual />
+        </Route>
+        <Route path="/talents">
+          <Talents />
+        </Route>
+        <Route path="/skills">
+          <Skills />
+        </Route>
+        <Route path="/adversaries">
+          <Adversaries />
+        </Route>
+        <Route path="/sources">
+          <Sources />
+        </Route>
+      </Switch>
+    </Router>
+
   );
 }
 
