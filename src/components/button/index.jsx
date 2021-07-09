@@ -8,25 +8,23 @@ function Button({
   return (
     <button
       onClick={onClick}
-      className={`${styles.button} ${styles[buttonType]}`}
+      className={`${styles.button} ${className} ${styles[buttonType]}`}
       type="button"
     >
       {caption}
-      {className}
     </button>
   );
 }
 
 Button.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   caption: PropTypes.string,
   className: PropTypes.string,
   buttonType: PropTypes.string,
 };
 
 Button.defaultProps = {
-  onClick: () => { alert('test button'); },
-  caption: 'default button',
+  caption: '',
   className: '',
   buttonType: '',
 };
