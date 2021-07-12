@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.0",
     "eslint-config-airbnb": "^18.2.1",
     "node-sass": "^6.0.1",
     "prop-types": "^15.7.2",
@@ -24,7 +25,8 @@
       "airbnb/hooks"
     ],
     "rules": {
-      "linebreak-style": "off"
+      "linebreak-style": "off",
+      "no-param-reassign": "off"
     }
   },
   "browserslist": {
