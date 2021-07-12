@@ -5,9 +5,16 @@ import Input from '../../components/Input';
 import Button from '../../components/button';
 
 const source = [{
-  name: '', shortName: '', description: '', lang: '',
-}];
-const content = [{ name: 'obj 1' }, { name: 'obj 2' }, { name: 'obj 3' }, { name: 'obj 4' }];
+  name: 'obj 1', shortName: 'o1', description: 'this is obj1', lang: 'en',
+},
+{
+  name: 'obj 2', shortName: 'o2', description: 'this is obj2', lang: 'en',
+},
+{
+  name: 'obj 3', shortName: 'o3', description: 'this is obj3', lang: 'en',
+},
+];
+
 const Sources = () => (
   <div className={style.sourceBody}>
     <Menu>
@@ -19,7 +26,7 @@ const Sources = () => (
           </div>),
         content: (
           <div>
-            {content.map((el) => (
+            {source.map((el) => (
               <div className={style.listElement} key={el.name}>
                 {el.name}
               </div>
