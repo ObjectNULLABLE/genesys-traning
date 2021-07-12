@@ -1,0 +1,21 @@
+.qualities{
+    width: 85%;
+
+    &.name{
+        display: flex;
+        align-content: center;
+        text-align: center;
+        margin-top: 1rem;
+        width: 65%;
+        background-color: salmon;
+    }
+
+    &.description{
+        text-align: center;
+        margin-top: 6rem;
+        width: 65%;
+    }
+
+}
+
+
