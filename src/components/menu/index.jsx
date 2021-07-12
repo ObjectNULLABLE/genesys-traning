@@ -13,7 +13,7 @@ const Menu = ({ children }) => (
 export default Menu;
 
 Menu.propTypes = {
-  children: PropTypes.objectOf({
+  children: PropTypes.shape({
     header: PropTypes.element,
     content: PropTypes.element,
     footer: PropTypes.element,
