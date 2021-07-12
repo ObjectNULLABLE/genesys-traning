@@ -1,11 +1,9 @@
 .button{
   background-color: black;
-  height: 2rem;
-  width: 6.3rem;
-  color: white;
-  border: none;
-  border-radius: 1.3rem;
-  &:hover {
+    height: 2rem;
+    color: white;
+    border: none;
+    &:hover {
     background-color: gray;
   }
 

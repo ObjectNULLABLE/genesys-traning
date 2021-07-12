@@ -1,0 +1,17 @@
+.sourceBody{
+    display:flex;
+    .listElement{
+        padding:1rem;
+        cursor: pointer;
+        &:hover{
+            background-color:rgb(129, 45, 45) ;
+            transition:0.5s;
+        }
+    }
+    .addButton{
+        width:100%;
+    }
+}
+
+
+
