@@ -1,67 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
-import Input from '../../components/Input';
-
 import Header from '../../components/header';
-import './style.scss';
-import Qual from '../../components/qualities';
-import Weapon from '../../components/weapon';
-import Talents from '../../components/talents';
-import Skills from '../../components/skills';
-import Adversaries from '../../components/adversaries';
-import Sources from '../../components/sources';
-import Button from '../../components/button/index';
-import Select from '../../components/select';
+import './style.module.scss';
+import Qual from '../qualities';
+import Weapon from '../weapon';
+import Talents from '../talents';
+import Skills from '../skills';
+import Adversaries from '../adversaries';
+import Sources from '../sources';
 
-const onClick = () => {
-  console.log('ghj');
-};
-
-const options = [{ name: 'Skills', value: 'skills' }, { name: 'Heroes', value: 'heroes' }, { name: 'Items', value: 'items' }];
 function App() {
-  const [
-    text,
-    setText,
-  ] = useState('');
   return (
     <Router>
-      <Header />
-      {text}
-      <Input
-        onChange={(value) => { setText(value); }}
-        value="sdas"
-        type=""
-      />
-
-      <Button onClick={onClick} caption="caption" className="" />
-      <div>
-        <Select options={options} />
+      <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <Header />
+        <div style={{ height: '100%', display: 'flex' }}>
+          <Switch>
+            <Route path="/weapon">
+              <Weapon />
+            </Route>
+            <Route path="/qualities">
+              <Qual />
+            </Route>
+            <Route path="/talents">
+              <Talents />
+            </Route>
+            <Route path="/skills">
+              <Skills />
+            </Route>
+            <Route path="/adversaries">
+              <Adversaries />
+            </Route>
+            <Route path="/sources">
+              <Sources />
+            </Route>
+            <Route path="*">
+              <Redirect to="/weapon" push />
+            </Route>
+          </Switch>
+        </div>
       </div>
-
-      <Switch>
-        <Route path="/weapon">
-          <Weapon />
-        </Route>
-        <Route path="/qualities">
-          <Qual />
-        </Route>
-        <Route path="/talents">
-          <Talents />
-        </Route>
-        <Route path="/skills">
-          <Skills />
-        </Route>
-        <Route path="/adversaries">
-          <Adversaries />
-        </Route>
-        <Route path="/sources">
-          <Sources />
-        </Route>
-      </Switch>
     </Router>
 
   );
