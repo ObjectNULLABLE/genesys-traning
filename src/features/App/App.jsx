@@ -17,9 +17,9 @@ import Sources from '../sources';
 function App() {
   return (
     <Router>
-      <div style={{ height: '100%' }}>
+      <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
         <Header />
-        <div style={{ height: '93.5%', display: 'flex' }}>
+        <div style={{ height: '100%', display: 'flex' }}>
           <Switch>
             <Route path="/weapon">
               <Weapon />

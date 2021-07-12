@@ -1,34 +1,20 @@
-.Menu{
+.menu{
     background-color: rgb(41, 15, 15);
-    width:15%;
+    width:15rem;
     color:white;
     height:100%;
-}
-
-.Search{
-    width:100%;
-}
-
-.header{
-    text-align: center;
-    border-top: 1px solid white;
-    font-size: 25px;
-    padding:1rem;
-}
-
-.footer{
-    border-top: 1px solid white;
-}
-
-.listElement{
-    padding:10px;
-    cursor: pointer;
-    &:hover{
-        background-color:rgb(129, 45, 45) ;
-        transition:0.5s;
+    .header{
+        text-align: center;
+        border-top: 1px solid white;
+        font-size: 25px;
+        padding:1rem;
+    }
+    
+    .footer{
+        display: flex;
+        align-content: flex-end;
     }
 }
 
-.addButton{
-    width:100%;
-}
+
+
