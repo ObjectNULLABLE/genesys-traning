@@ -5,6 +5,8 @@ import styles from './styles.module.scss';
 const Menu = ({ children }) => (
   <div className={styles.Menu}>
     {children.header}
+    {children.content}
+    {children.footer}
   </div>
 );
 
