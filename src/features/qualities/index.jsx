@@ -53,5 +53,4 @@ function Qualities() {
     </div>
   );
 }
-
 export default Qualities;
