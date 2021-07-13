@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import style from './styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import Button from '../../components/button';
 
-const qualities = [{
-  name: 'name', sourceID: '', description: 'description', lang: 'lang', active: 'false',
-}];
-
-const content = [{ name: 'obj 1' }, { name: 'obj 2' }, { name: 'obj 3' }, { name: 'obj 4' }];
-function Qualities() {
+const Qualities = () => {
+  const qualities = useSelector((state) => state.qualities.data);
+  const [filterValue, setFilterValue] = useState('');
+  const [selected, setSelected] = useState(qualities[0]);
   return (
     <div className={style.sourceBody}>
       <Menu>
@@ -17,40 +16,56 @@ function Qualities() {
           header: (
             <div>
               <div className={style.header}>Qualities</div>
-              <Input className={style.search} onChange={() => {}} type="text" />
+              <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
             <div>
-              {content.map((el) => (
-                <div className={style.listElement} key={el.name}>
-                  {el.name}
-                </div>
-              ))}
+              {
+               qualities.filter((item) => (
+                 item.name.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+               )).map((el) => (
+                 <div
+                   role="button"
+                   tabIndex={0}
+                   onKeyDown={() => {}}
+                   onClick={() => {
+                     setSelected(el);
+                   }}
+                   key={el.name}
+                   className={style.listElement}
+                 >
+                   {el.name}
+                 </div>
+               ))
+              }
             </div>),
-          footer: <Button caption="Add new Qualities" className={style.addButton} onClick={() => {}} />,
+          footer: <Button caption="Add new Quality" className={style.addButton} onClick={() => {}} />,
         }}
       </Menu>
 
       <div className={style.qualities}>
         <div className={style.wrap1}>
           <div className={style.name}>
-            {qualities[0].name}
+            {selected.name}
           </div>
           <div className={style.lang}>
-            {qualities[0].lang}
+            {selected.lang}
           </div>
           <div className={style.active}>
-            {qualities.active === false ? 'false' : 'true'}
+            {selected.active === false ? 'false' : 'true'}
           </div>
         </div>
         <div className={style.description}>
-          {qualities[0].description}
+          {selected.description}
         </div>
-        <div className={style.sourceID}>
-          {qualities[0].sourceID}
-        </div>
+
       </div>
     </div>
+
   );
-}
+};
 export default Qualities;
+
+/* <div className={style.sourceID}>
+          {qualities[0].sourceID}
+        </div> */

@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import qualities from './qualitiesData.json';
 
 const qualitiesSlice = createSlice({
   name: 'qualities',
   initialState: {
-    data: [],
+    data: qualities,
   },
   reducers: {
     addQualitiesAction(state, action) {
