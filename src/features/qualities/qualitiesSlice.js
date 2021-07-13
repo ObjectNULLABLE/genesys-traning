@@ -13,4 +13,4 @@ const qualitiesSlice = createSlice({
 });
 
 export default qualitiesSlice.reducer;
-export const { addClientAction } = qualitiesSlice.actions;
+export const { addQualitiesAction } = qualitiesSlice.actions;

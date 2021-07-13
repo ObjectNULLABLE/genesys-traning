@@ -1,13 +1,29 @@
-.qualities{
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 2rem;
-}
-
 .sourceBody{
     display:flex;
+    width:100%;
+    .qualities{
+        margin: 1rem;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2rem;
+    .wrap1 {
+        margin-bottom: 1rem;
+        display: flex;
+        width: 30rem;
+        justify-content: space-around;
+        div {
+            border-right: solid rgb(0, 0, 0);
+            text-align: center;
+            padding-right: 3.5rem;
+            &:last-child{
+            border-right-width: 0;
+            }
+        }
+        
+    }
+    }
     .listElement{
         padding:1rem;
         cursor: pointer;
@@ -25,8 +41,6 @@
         display: flex;
         align-content: center;
         text-align: center;
-        margin-top: 1rem;
-        background-color: salmon;
     }
 
     .description{
@@ -34,9 +48,12 @@
         width: 40rem;
         padding : 1rem;
         font-size: 1rem;
-       text-align:justify;
+        text-align:justify;
         background-color: rgb(192, 186, 185) ;
         box-shadow: 0 0 34px rgba(0, 0, 0, 0.9);
+    }
+    .lang {
+        display: inline-block;
     }
 
 }
