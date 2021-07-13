@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import sources from './sourcesData.json';
 
 const sourcesSlice = createSlice({
   name: 'sources',
   initialState: {
-    data: [],
+    data: sources,
   },
   reducers: {
     addSourceAction(state, action) {

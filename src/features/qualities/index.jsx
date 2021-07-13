@@ -44,28 +44,26 @@ const Qualities = () => {
       </Menu>
 
       <div className={style.qualities}>
-        <div className={style.wrap1}>
-          <div className={style.name}>
-            {selected.name}
-          </div>
-          <div className={style.lang}>
-            {selected.lang}
-          </div>
-          <div className={style.active}>
-            {selected.active === false ? 'false' : 'true'}
-          </div>
+        <div className={style.name}>
+          {selected.name}
         </div>
         <div className={style.description}>
           {selected.description}
         </div>
-
+        <div className={style.info}>
+          <div className={style.infoItem}>
+            {selected.active === false ? 'false' : 'true'}
+          </div>
+          <div className={style.sourceID}>
+            {selected.sourceID}
+          </div>
+          <div className={style.infoItem}>
+            {selected.lang}
+          </div>
+        </div>
       </div>
-    </div>
 
+    </div>
   );
 };
 export default Qualities;
-
-/* <div className={style.sourceID}>
-          {qualities[0].sourceID}
-        </div> */
