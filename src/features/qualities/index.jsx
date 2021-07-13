@@ -52,11 +52,11 @@ function Qual({ qualities }) {
 }
 
 Qual.propTypes = {
-  qualities: PropTypes.objectOf({
+  qualities: PropTypes.shape({
     name: PropTypes.string,
     active: PropTypes.bool,
     description: PropTypes.string,
-    sourceID: PropTypes.objectOf({ type: PropTypes.string }),
+    sourceID: PropTypes.shape({ type: PropTypes.string }),
     lang: PropTypes.string,
   }),
 };
@@ -66,7 +66,7 @@ Qual.defaultProps = {
     name: 'name',
     active: false,
     description: 'description',
-    sourceID: '',
+    sourceID: {},
     lang: 'lang',
   },
 };
