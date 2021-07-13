@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import skills from './skillsData.json';
 
 const skillsSlice = createSlice({
   name: 'skill',
   initialState: {
-    data: [],
+    data: skills,
   },
   reducers: {
     addSkillAction(state, action) {
