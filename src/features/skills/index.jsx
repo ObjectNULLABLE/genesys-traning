@@ -43,13 +43,8 @@ const Skills = () => {
         }}
       </Menu>
       <div className={style.skills}>
-        <div className={style.wrap1}>
-          <div className={style.name}>
-            {selected.name}
-          </div>
-          <div className={style.lang}>
-            {selected.lang}
-          </div>
+        <div className={style.name}>
+          {selected.name}
         </div>
         <div className={style.description}>
           {selected.description}
@@ -60,20 +55,25 @@ const Skills = () => {
             {selected.notUseIf}
           </div>
         </div>
-        <div className={style.worlds}>
-          {selected.worlds}
+        <div className={style.info}>
+          <div className={style.infoItem}>
+            {selected.worlds}
+          </div>
+          <div className={style.infoItem}>
+            {selected.lang}
+          </div>
+          <div className={style.infoItem}>
+            {selected.type}
+          </div>
+          <div className={style.infoItem}>
+            {selected.characteristic}
+          </div>
+          <div className={style.infoItem}>
+            {selected.sourseID}
+          </div>
         </div>
-        <div className={style.type}>
-          {selected.type}
-        </div>
-        <div className={style.characteristic}>
-          {selected.characteristic}
-        </div>
-        <div className={style.sourceID}>
-          {selected.sourseID}
-        </div>
-
       </div>
+
     </div>
   );
 };

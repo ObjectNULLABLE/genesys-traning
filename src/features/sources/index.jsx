@@ -1,23 +1,14 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import style from './style.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import Button from '../../components/button';
 
-const sources = [
-  {
-    name: 'obj 1', shortName: 'o1', description: 'this is obj1', lang: 'en',
-  },
-  {
-    name: 'obj 2', shortName: 'o2', description: 'this is obj2', lang: 'en',
-  },
-  {
-    name: 'obj 3', shortName: 'o3', description: 'this is obj3', lang: 'en',
-  },
-];
-
 const Sources = () => {
+  const sources = useSelector((state) => state.sources.data);
   const [filterValue, setFilterValue] = useState('');
+  const [selected, setSelected] = useState(sources[0]);
   return (
     <div className={style.sourceBody}>
       <Menu>
@@ -30,8 +21,16 @@ const Sources = () => {
           content: (
             <div>
               {
-               sources.filter((item) => item.name.indexOf(filterValue) !== -1).map((el) => (
+               sources.filter((item) => (
+                 item.name.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+               )).map((el) => (
                  <div
+                   role="button"
+                   tabIndex={0}
+                   onKeyDown={() => { }}
+                   onClick={() => {
+                     setSelected(el);
+                   }}
                    key={el.name}
                    className={style.listElement}
                  >
@@ -44,17 +43,22 @@ const Sources = () => {
         }}
       </Menu>
       <div className={style.sourcePrototype}>
-        <div className={style.wrap1}>
-          <div>
-            {sources[0].name}
-          </div>
-          <div>
-            {sources[0].shortName}
-          </div>
-          <div className={style.lang}>{sources[0].lang}</div>
+        <div className={style.name}>
+          {selected.name}
         </div>
-        <div className={style.description}>{sources[0].description}</div>
+        <div className={style.description}>
+          {selected.description}
+        </div>
+        <div className={style.info}>
+          <div className={style.infoItem}>
+            {selected.shortName}
+          </div>
+          <div className={style.infoItem}>
+            {selected.lang}
+          </div>
+        </div>
       </div>
+
     </div>
   );
 };
