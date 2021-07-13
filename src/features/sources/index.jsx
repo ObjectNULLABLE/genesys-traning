@@ -36,10 +36,16 @@ const Sources = () => (
       }}
     </Menu>
     <div className={style.sourcePrototype}>
-      <div className={style.name}>{source.name}</div>
-      <div className={style.shortName}>{source.shortName}</div>
-      <div className={style.description}>{source.description}</div>
-      <div className={style.lang}>{source.lang}</div>
+      <div className={style.wrap1}>
+        <div>
+          {source[0].name}
+        </div>
+        <div>
+          {source[0].shortName}
+        </div>
+        <div className={style.lang}>{source[0].lang}</div>
+      </div>
+      <div className={style.description}>{source[0].description}</div>
     </div>
   </div>
 );

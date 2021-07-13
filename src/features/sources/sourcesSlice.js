@@ -6,7 +6,7 @@ const sourcesSlice = createSlice({
     data: [],
   },
   reducers: {
-    addClientAction(state, action) {
+    addSourceAction(state, action) {
       state.sources = [...state.sources, action.payload];
     },
   },
