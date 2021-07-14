@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './style.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
-import Button from '../../components/button';
 import { deleteSourceAction } from './sourcesSlice';
+import Button from '../../components/button';
 
 const Sources = () => {
   const sources = useSelector((state) => state.sources.data);
@@ -24,7 +24,7 @@ const Sources = () => {
               <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
-            <div className={style.elements}>
+            <div className={style.sources}>
               {
                sources.filter((item) => (
                  item.name.toLowerCase().includes(filterValue.toLowerCase())
@@ -32,7 +32,7 @@ const Sources = () => {
                  <div
                    role="button"
                    tabIndex={0}
-                   onKeyDown={() => { }}
+                   onKeyDown={() => {}}
                    onClick={() => {
                      setSelected(el);
                    }}
@@ -55,7 +55,14 @@ const Sources = () => {
                ))
               }
             </div>),
-          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => {}} />,
+          footer: (
+            <div>
+              <Button
+                caption="Add new Source"
+                className={style.addButton}
+                onClick={() => {}}
+              />
+            </div>),
         }}
       </Menu>
       <div className={style.sourcePrototype}>
