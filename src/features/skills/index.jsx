@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './style.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import Button from '../../components/button';
+import { deleteSkillsAction } from './skillsSlice';
 
 const Skills = () => {
   const skills = useSelector((state) => state.skills.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(skills[0]);
+  const dispatch = useDispatch();
+  const deleteSkill = (source) => {
+    dispatch(deleteSkillsAction(source));
+  };
   return (
     <div className={style.sourceBody}>
       <Menu>
@@ -19,7 +24,7 @@ const Skills = () => {
               <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
-            <div>
+            <div className={style.elements}>
               {
                skills.filter((item) => (
                  item.name.toLowerCase().includes(filterValue.toLowerCase())
@@ -32,9 +37,20 @@ const Skills = () => {
                      setSelected(el);
                    }}
                    key={el.name}
+                   style={selected.name === el.name ? { background: 'rgb(129, 45, 45) ' } : { background: 'rgb(41, 15, 15)' }}
                    className={style.listElement}
                  >
                    {el.name}
+                   <div
+                     role="button"
+                     tabIndex={0}
+                     onKeyDown={() => {}}
+                     className={style.cross}
+                     style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
+                     onClick={() => (window.confirm('Confirm delete?') && deleteSkill(el))}
+                   >
+                     X
+                   </div>
                  </div>
                ))
               }
