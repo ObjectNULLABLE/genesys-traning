@@ -12,10 +12,21 @@
         text-align: center;
         width: 100%;
         height: 2rem;
+        font-size: 20px;
         background-color: rgb(41, 15, 15);
         color:white;
         font-family:Verdana, Geneva, Tahoma, sans-serif;
         border-radius: 20px 20px 0 0;
+        display: flex;
+        .cross{
+            padding-right: 1rem;
+            display: flex;
+            margin-left: auto;
+            cursor: pointer;
+        }
+        .title{
+            padding-left: 1rem;
+        }
     }
     .modalBody{
         span{
@@ -27,6 +38,8 @@
             justify-content: center;
             background-color:rgb(129, 45, 45);
             .description{
+                min-width: 100%;
+                width: 100%;
                 max-width: 100%;
             }
         }

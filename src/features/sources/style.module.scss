@@ -11,10 +11,6 @@
             display:flex;
             padding:1rem;
             cursor: pointer;
-            &:hover{
-                background-color:rgb(129, 45, 45) ;
-                transition:0.5s;
-            }
             .cross{
                 display: flex;
                 align-items: flex-end;
@@ -56,6 +52,7 @@
         background-color: rgb(41, 15, 15) ;
         color:white;
         box-shadow: 0 0 34px rgba(0, 0, 0, 0.9);
+        white-space: pre-wrap;
     }
 
     .info

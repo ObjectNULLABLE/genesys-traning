@@ -5,6 +5,7 @@ import style from './style.module.scss';
 import { addSourceAction } from '../../features/sources/sourcesSlice';
 import Button from '../button';
 import Input from '../Input';
+import Select from '../select';
 
 const Modal = ({ children, isShow, closing }) => {
   const dispatch = useDispatch();
@@ -27,7 +28,18 @@ const Modal = ({ children, isShow, closing }) => {
 
   return (
     <div style={isShow ? { display: 'block' } : { display: 'none' }} className={style.modal}>
-      <div className={style.modalTitle}>{children.title}</div>
+      <div className={style.modalTitle}>
+        <div className={style.title}>{children.title}</div>
+        <div
+          className={style.cross}
+          role="button"
+          tabIndex={0}
+          onKeyDown={() => {}}
+          onClick={() => (closing())}
+        >
+          X
+        </div>
+      </div>
       <div className={style.modalBody}>
         <div className={style.inputs}>
           <span>name:</span>
@@ -43,19 +55,18 @@ const Modal = ({ children, isShow, closing }) => {
             value={description}
             className={style.description}
             onChange={
-            (e) => { setDescription(e.target.value); }
+            (e) => { setDescription(e.target.value.replace(/\n/g, '<br/>')); }
 }
           />
         </div>
         <div className={style.inputs}>
           <span>lang:</span>
-          <Input type="text" value={lang} onChange={setLang} />
+          <Select options={[{ name: 'English', value: 'eng' }, { name: 'Russian', value: 'rus' }]} selectValue={setLang} />
         </div>
       </div>
       <div className={style.modalFooter}>
-        <Button className={style.buttonSubmit} onClick={() => { addSource(name, shortName, description, lang); setName(''); setShortName(''); setDescription(''); setLang(''); }} caption="Add new" />
+        <Button className={style.buttonSubmit} disabled onClick={() => { addSource(name, shortName, description, lang.value); }} caption="Add new" />
       </div>
-
     </div>
 
   );

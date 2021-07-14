@@ -1,60 +1,65 @@
 .sourceBody{
     display:flex;
     width:100%;
-    .qualities{
-        margin: 1rem;
+    .elements{
         display: flex;
-        flex: 1;
         flex-direction: column;
-        align-items: center;
-        font-size: 2rem;
-    .wrap1 {
-        margin-bottom: 1rem;
-        display: flex;
-        width: 30rem;
-        justify-content: space-around;
-        div {
-            border-right: solid rgb(0, 0, 0);
-            text-align: center;
-            padding-right: 3.5rem;
-            &:last-child{
-            border-right-width: 0;
-            }
-        }
-        
-    }
     }
     .listElement{
-        padding:1rem;
+        display: flex;
+        padding: 1rem;
         cursor: pointer;
         &:hover{
             background-color:rgb(129, 45, 45) ;
             transition:0.5s;
         }
+        .buttonDelete{
+            display: flex;
+            align-items: flex-end;
+            margin-left: auto;
+            font-family: Arial, Helvetica, sans-serif;
+        }
     }
-    
     .addButton{
         width:100%;
     }
-
-     .name{
-        display: flex;
-        align-content: center;
-        text-align: center;
+    .name{
+        padding-bottom:1rem;
     }
-
+    .qualities{
+        flex:1;
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 2rem;
+    }
     .description{
-        height: 30rem;
-        width: 40rem;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-y: auto;
+        height: 40rem;
+        width: 70rem;
         padding : 1rem;
-        font-size: 1rem;
+        font-size: 1.5rem;
         text-align:justify;
-        background-color: rgb(192, 186, 185) ;
+        background-color: rgb(41, 15, 15) ;
+        color:white;
         box-shadow: 0 0 34px rgba(0, 0, 0, 0.9);
     }
-    .lang {
-        display: inline-block;
+    .info{
+        display: flex;
+        flex-wrap: wrap;
+        width: 40rem;
+        .infoItem{
+            text-align: justify;
+            width:50%;
+            flex-wrap: wrap;
+        }
     }
+    .sourceID{
+        text-align: justify;
+    }
+
 
 }
 

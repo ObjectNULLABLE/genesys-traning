@@ -75,7 +75,11 @@ const Sources = () => {
             {`Lang: ${selected.lang}`}
           </div>
         </div>
-        <Modal isShow={isShow} closing={() => { setIsShow(!isShow); }} />
+        <Modal isShow={isShow} closing={() => { setIsShow(!isShow); }}>
+          {{
+            title: 'Add new source form',
+          }}
+        </Modal>
       </div>
 
     </div>

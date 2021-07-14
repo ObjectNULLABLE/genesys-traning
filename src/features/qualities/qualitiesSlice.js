@@ -1,16 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
+import qualities from './qualitiesData.json';
 
 const qualitiesSlice = createSlice({
   name: 'qualities',
   initialState: {
-    data: [],
+    data: qualities,
   },
   reducers: {
     addQualitiesAction(state, action) {
       state.qualities = [...state.qualities, action.payload];
     },
+    deleteQualitiesAction(state, action) {
+      state.data = state.data.filter(
+        (quality) => quality.name !== action.payload.name,
+      );
+    },
   },
 });
 
 export default qualitiesSlice.reducer;
-export const { addQualitiesAction } = qualitiesSlice.actions;
+export const { addQualitiesAction, deleteQualitiesAction } = qualitiesSlice.actions;
