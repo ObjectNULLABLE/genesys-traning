@@ -1,20 +1,29 @@
 .sourceBody{
     display:flex;
     width:100%;
+    .elements{
+        display: flex;
+        flex-direction: column;
+    }
     .listElement{
+        display: flex;
         padding: 1rem;
         cursor: pointer;
         &:hover{
             background-color:rgb(129, 45, 45) ;
             transition:0.5s;
         }
+        .buttonDelete{
+            display: flex;
+            align-items: flex-end;
+            margin-left: auto;
+            font-family: Arial, Helvetica, sans-serif;
+        }
     }
-    
     .addButton{
         width:100%;
     }
-
-     .name{
+    .name{
         padding-bottom:1rem;
     }
     .qualities{
@@ -50,6 +59,7 @@
     .sourceID{
         text-align: justify;
     }
+
 
 }
 
