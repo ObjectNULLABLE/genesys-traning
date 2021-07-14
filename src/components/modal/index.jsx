@@ -31,23 +31,29 @@ const Modal = ({ children, isShow, closing }) => {
       <div className={style.modalBody}>
         <div className={style.inputs}>
           <span>name:</span>
-          <Input value={name} onChange={setName} />
+          <Input type="text" value={name} onChange={setName} />
         </div>
         <div className={style.inputs}>
           <span>shortname:</span>
-          <Input value={shortName} onChange={setShortName} />
+          <Input type="text" value={shortName} onChange={setShortName} />
         </div>
         <div className={style.inputs}>
           <span>description:</span>
-          <Input value={description} onChange={setDescription} />
+          <textarea
+            value={description}
+            className={style.description}
+            onChange={
+            (e) => { setDescription(e.target.value); }
+}
+          />
         </div>
         <div className={style.inputs}>
           <span>lang:</span>
-          <Input value={lang} onChange={setLang} />
+          <Input type="text" value={lang} onChange={setLang} />
         </div>
       </div>
       <div className={style.modalFooter}>
-        <Button className={style.buttonSubmit} onClick={() => { addSource(name, shortName, description, lang); }} caption="Add new" />
+        <Button className={style.buttonSubmit} onClick={() => { addSource(name, shortName, description, lang); setName(''); setShortName(''); setDescription(''); setLang(''); }} caption="Add new" />
       </div>
 
     </div>
