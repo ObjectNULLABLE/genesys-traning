@@ -1,6 +1,7 @@
 .sourceBody{
     display:flex;
     width:100%;
+    flex-grow: 3;
     .listElement{
         padding:1rem;
         cursor: pointer;
