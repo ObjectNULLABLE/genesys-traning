@@ -22,7 +22,7 @@ const Sources = () => {
             <div>
               {
                sources.filter((item) => (
-                 item.name.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+                 item.name.toLowerCase().includes(filterValue.toLowerCase())
                )).map((el) => (
                  <div
                    role="button"

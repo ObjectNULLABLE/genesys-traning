@@ -5,7 +5,8 @@
     color:white;
     height:100%;
     overflow-y: auto;
-    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
     .header{
         text-align: center;
         border-top: 1px solid white;
@@ -13,7 +14,9 @@
         padding:1rem;
     }
     .footer{
-        position:fixed;
+        display: flex;
+        align-items: flex-end;
+        flex-grow: 3;
         width:15rem;
         bottom:0px;
     }
