@@ -19,10 +19,10 @@ const Sources = () => {
               <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
-            <div>
+            <div className={style.elements}>
               {
                sources.filter((item) => (
-                 item.name.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+                 item.name.toLowerCase().includes(filterValue.toLowerCase())
                )).map((el) => (
                  <div
                    role="button"
@@ -32,9 +32,16 @@ const Sources = () => {
                      setSelected(el);
                    }}
                    key={el.name}
+                   style={selected.name === el.name ? { background: 'rgb(129, 45, 45) ' } : { background: 'rgb(41, 15, 15)' }}
                    className={style.listElement}
                  >
                    {el.name}
+                   <div
+                     className={style.cross}
+                     style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
+                   >
+                     X
+                   </div>
                  </div>
                ))
               }
