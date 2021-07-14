@@ -5,11 +5,13 @@ import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import { deleteSourceAction } from './sourcesSlice';
 import Button from '../../components/button';
+import Modal from '../../components/modal';
 
 const Sources = () => {
   const sources = useSelector((state) => state.sources.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(sources[0]);
+  const [isShow, setIsShow] = useState(false);
   const dispatch = useDispatch();
   const deleteSource = (source) => {
     dispatch(deleteSourceAction(source));
@@ -55,14 +57,7 @@ const Sources = () => {
                ))
               }
             </div>),
-          footer: (
-            <div>
-              <Button
-                caption="Add new Source"
-                className={style.addButton}
-                onClick={() => {}}
-              />
-            </div>),
+          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setIsShow(!isShow); }} />,
         }}
       </Menu>
       <div className={style.sourcePrototype}>
@@ -80,6 +75,7 @@ const Sources = () => {
             {`Lang: ${selected.lang}`}
           </div>
         </div>
+        <Modal isShow={isShow} closing={() => { setIsShow(!isShow); }} />
       </div>
 
     </div>
