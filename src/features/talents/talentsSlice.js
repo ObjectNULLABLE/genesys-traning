@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import talents from './talentsData.json';
 
 const talentsSlice = createSlice({
   name: 'talents',
   initialState: {
-    data: [],
+    data: talents,
   },
   reducers: {
     addTalentsAction(state, action) {

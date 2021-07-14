@@ -46,6 +46,9 @@
         display: flex;
         flex-wrap: wrap;
         width: 40rem;
+        span {
+            font-weight: bold;
+        }
         .infoItem{
             text-align: center;
             width:50%;

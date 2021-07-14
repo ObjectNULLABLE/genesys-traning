@@ -22,7 +22,7 @@ const Skills = () => {
             <div>
               {
                skills.filter((item) => (
-                 item.name.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+                 item.name.toLowerCase().includes(filterValue.toLowerCase())
                )).map((el) => (
                  <div
                    role="button"
@@ -44,6 +44,7 @@ const Skills = () => {
       </Menu>
       <div className={style.skills}>
         <div className={style.name}>
+          <span>Name of talent: </span>
           {selected.name}
         </div>
         <div className={style.description}>
@@ -57,19 +58,26 @@ const Skills = () => {
         </div>
         <div className={style.info}>
           <div className={style.infoItem}>
-            {selected.worlds}
+            <span>Worlds: </span>
+            {selected.worlds.map((world) => (
+              <span>
+
+                {`${world}, `}
+
+              </span>
+            ))}
           </div>
           <div className={style.infoItem}>
+            <span>Language: </span>
             {selected.lang}
           </div>
           <div className={style.infoItem}>
+            <span>Type: </span>
             {selected.type}
           </div>
           <div className={style.infoItem}>
+            <span>Characteristic: </span>
             {selected.characteristic}
-          </div>
-          <div className={style.infoItem}>
-            {selected.sourseID}
           </div>
         </div>
       </div>

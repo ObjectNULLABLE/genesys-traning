@@ -1,12 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import Button from '../../components/button';
 
-const content = [{ name: 'obj 1' }, { name: 'obj 2' }, { name: 'obj 3' }, { name: 'obj 4' }];
-function Talents({ talents }) {
+const Talents = () => {
+  const talents = useSelector((state) => state.talents.data);
+  const [filterValue, setFilterValue] = useState('');
+  const [selected, setSelected] = useState(talents[0]);
   return (
     <div className={styles.talentsBody}>
       <Menu>
@@ -14,72 +16,70 @@ function Talents({ talents }) {
           header: (
             <div>
               <div>Talents</div>
-              <Input onChange={() => {}} type="text" />
+              <Input className={styles.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
             <div>
-              {content.map((el) => (
-                <div className={styles.listElement} key={el.name}>
-                  {el.name}
-                </div>
-              ))}
+              {
+               talents.filter((item) => (
+                 item.name.toLowerCase().includes(filterValue.toLowerCase())
+               )).map((el) => (
+                 <div
+                   role="button"
+                   tabIndex={0}
+                   onKeyDown={() => { }}
+                   onClick={() => {
+                     setSelected(el);
+                   }}
+                   key={el.name}
+                   className={styles.listElement}
+                 >
+                   {el.name}
+                 </div>
+               ))
+              }
             </div>),
           footer: <Button caption="Add new Source" className={styles.addButton} onClick={() => {}} />,
         }}
       </Menu>
       <div className={styles.talents}>
-        <div className={styles.wrap1}>
-          <div className={styles.name}>
-            {talents.name}
-          </div>
-          <div className={styles.tier}>
-            {talents.tier}
-          </div>
-          <div className={styles.sourceID}>
-            {talents.sourceID}
-          </div>
+        <div className={styles.name}>
+          <span>Name of talent: </span>
+          {selected.name}
         </div>
         <div className={styles.description}>
-          {talents.description}
+          {selected.description}
         </div>
-        <div className={styles.activation}>
-          {talents.activation}
+        <div className={styles.info}>
+          <div className={styles.infoItem}>
+            <span>Tier: </span>
+            {selected.tier}
+          </div>
+          <div className={styles.infoItem}>
+            <span>Activation: </span>
+            {selected.activation}
+          </div>
+          <div className={styles.infoItem}>
+            <span>Ranked: </span>
+            {selected.ranked ? 'yes' : 'no'}
+          </div>
+          <div className={styles.infoItem}>
+            <span>Worlds: </span>
+            {selected.worlds.map((world) => (
+              <span>
+
+                {`${world}, `}
+
+              </span>
+            ))}
+          </div>
+          <div className={styles.infoItem}>
+            <span>Language: </span>
+            {selected.lang}
+          </div>
         </div>
-        <div className={styles.ranked}>
-          {talents.ranked}
-        </div>
-        <div className={styles.worlds}>
-          {talents.worlds}
-        </div>
-        <div className={styles.lang}>{talents.lang}</div>
       </div>
     </div>
   );
-}
-
-Talents.propTypes = {
-  talents: PropTypes.shape({
-    name: PropTypes.string,
-    tier: PropTypes.number,
-    activation: PropTypes.string,
-    ranked: PropTypes.bool,
-    description: PropTypes.string,
-    worlds: PropTypes.string,
-    sourceID: PropTypes.string,
-    lang: PropTypes.string,
-  }),
-};
-
-Talents.defaultProps = {
-  talents: {
-    name: 'name',
-    tier: 0,
-    activation: 'activation',
-    ranked: false,
-    description: 'lorem ipsum jvgnerhgbkjrg gbr  btg jbn hbhjb jv hv',
-    worlds: 'worlds',
-    sourceID: '123',
-    lang: 'ru',
-  },
 };
 export default Talents;
