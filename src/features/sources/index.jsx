@@ -47,7 +47,7 @@ const Sources = () => {
                      onKeyDown={() => {}}
                      className={style.cross}
                      style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
-                     onClick={() => deleteSource(el)}
+                     onClick={() => (window.confirm('Confirm delete?') && deleteSource(el))}
                    >
                      X
                    </div>
