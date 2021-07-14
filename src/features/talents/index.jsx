@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import Button from '../../components/button';
+import { deleteTalentsAction } from './talentsSlice';
 
 const Talents = () => {
   const talents = useSelector((state) => state.talents.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(talents[0]);
+  const dispatch = useDispatch();
+  const deleteTalent = (source) => {
+    dispatch(deleteTalentsAction(source));
+  };
   return (
     <div className={styles.talentsBody}>
       <Menu>
@@ -19,7 +24,7 @@ const Talents = () => {
               <Input className={styles.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
-            <div>
+            <div className={styles.elements}>
               {
                talents.filter((item) => (
                  item.name.toLowerCase().includes(filterValue.toLowerCase())
@@ -32,9 +37,20 @@ const Talents = () => {
                      setSelected(el);
                    }}
                    key={el.name}
+                   style={selected.name === el.name ? { background: 'rgb(129, 45, 45) ' } : { background: 'rgb(41, 15, 15)' }}
                    className={styles.listElement}
                  >
                    {el.name}
+                   <div
+                     role="button"
+                     tabIndex={0}
+                     onKeyDown={() => {}}
+                     className={styles.cross}
+                     style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
+                     onClick={() => (window.confirm('Confirm delete?') && deleteTalent(el))}
+                   >
+                     X
+                   </div>
                  </div>
                ))
               }
