@@ -2,12 +2,23 @@
     display:flex;
     width:100%;
     flex-grow: 3;
-    .listElement{
-        padding:1rem;
-        cursor: pointer;
-        &:hover{
-            background-color:rgb(129, 45, 45) ;
-            transition:0.5s;
+    .elements{
+        display: flex;
+        flex-direction: column;
+        .listElement{
+            display:flex;
+            padding:1rem;
+            cursor: pointer;
+            &:hover{
+                background-color:rgb(129, 45, 45) ;
+                transition:0.5s;
+            }
+            .cross{
+                display: flex;
+                align-items: flex-end;
+                margin-left: auto;
+                font-family: Arial, Helvetica, sans-serif;
+            }
         }
     }
     .addButton{
