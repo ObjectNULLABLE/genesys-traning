@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './style.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
-import { deleteSourceAction } from './sourcesSlice';
+import { deleteSourceAction, addSourceAction } from './sourcesSlice';
 import Button from '../../components/button';
 import Modal from '../../components/modal';
 import Select from '../../components/select';
@@ -12,7 +12,7 @@ const Sources = () => {
   const sources = useSelector((state) => state.sources.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(sources[0]);
-  const [isShow, setIsShow] = useState(false);
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
@@ -20,9 +20,20 @@ const Sources = () => {
   const [description, setDescription] = useState('');
   const [lang, setLang] = useState('');
 
+  const addSource = () => {
+    const note = {
+      name,
+      shortName,
+      description,
+      lang,
+    };
+    dispatch(addSourceAction(note));
+  };
+
   const deleteSource = (source) => {
     dispatch(deleteSourceAction(source));
   };
+
   return (
     <div className={style.sourceBody}>
       <Menu>
@@ -66,7 +77,7 @@ const Sources = () => {
                ))
               }
             </div>),
-          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setIsShow(!isShow); }} />,
+          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setShow(!show); }} />,
         }}
       </Menu>
       <div className={style.sourcePrototype}>
@@ -84,12 +95,13 @@ const Sources = () => {
             {`Lang: ${selected.lang}`}
           </div>
         </div>
+        {show && (
         <Modal
           sourceData={{
             name, shortName, description, lang,
           }}
-          isShow={isShow}
-          closing={() => { setIsShow(!isShow); setName(''); setDescription(''); setShortName(''); setLang(''); }}
+          show={show}
+          closeModal={() => { setShow(!show); setName(''); setDescription(''); setShortName(''); setLang(''); }}
         >
           {{
             title: 'Add new source form',
@@ -115,12 +127,22 @@ const Sources = () => {
                 </div>
                 <div className={style.inputs}>
                   <span>lang:</span>
-                  <Select options={[{ name: 'English', value: 'eng' }, { name: 'Russian', value: 'ru' }]} defaultValue={{ name: 'English', value: 'eng' }} selectValue={setLang} />
+                  <Select
+                    options={['eng', 'ru']}
+                    setValue={setLang}
+                  />
                 </div>
               </div>
             ),
+            footer: (
+              <Button
+                className={style.buttonSubmit}
+                onClick={() => { addSource(); setShow(!show); }}
+                caption="Add new"
+              />),
           }}
         </Modal>
+        )}
       </div>
 
     </div>

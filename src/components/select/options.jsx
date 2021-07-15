@@ -2,26 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './index.module.scss';
 
-const SelectValue = (value, setSelectedOption, selectedOption, defaultValue) => (
-  selectedOption !== value ? setSelectedOption(value) : setSelectedOption(defaultValue)
-);
-
 const Options = ({
-  options, closeDropdown, setSelectedOption, selectedOption, defaultValue,
+  options, closeDropdown, setValue, setSelectedValue,
 }) => (options.map((option) => (
   <div
     role="option"
     aria-selected
     tabIndex={0}
-    key={Date.now()}
+    key={option}
     onKeyDown={() => { }}
     onClick={() => {
-      SelectValue(option, setSelectedOption, selectedOption, defaultValue);
+      setValue(option);
+      setSelectedValue(option);
       closeDropdown();
     }}
     className={styles.option}
   >
-    {option.name}
+    {option}
   </div>
 )));
 
