@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import Options from './options';
 import styles from './index.module.scss';
 
-const Select = ({ options, selectValue }) => {
+const Select = ({ options, selectValue, defaultValue }) => {
   const [show, setShow] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState(defaultValue);
   selectValue(selectedOption);
   return (
     <div className={styles.Selector}>
@@ -22,7 +22,10 @@ const Select = ({ options, selectValue }) => {
         <Options
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
-          closeDropdown={() => setShow(false)}
+          closeDropdown={() => {
+            setShow(false);
+            setSelectedOption(defaultValue);
+          }}
           options={options}
         />
       )}
@@ -37,9 +40,14 @@ Select.propTypes = {
     value: PropTypes.string,
   })),
   selectValue: PropTypes.func,
+  defaultValue: PropTypes.arrayOf(PropTypes.objectOf({
+    name: PropTypes.string,
+    value: PropTypes.string,
+  })),
 };
 
 Select.defaultProps = {
   options: [{}],
+  defaultValue: {},
   selectValue: () => {},
 };

@@ -6,6 +6,7 @@ import Input from '../../components/Input';
 import { deleteSourceAction } from './sourcesSlice';
 import Button from '../../components/button';
 import Modal from '../../components/modal';
+import Select from '../../components/select';
 
 const Sources = () => {
   const sources = useSelector((state) => state.sources.data);
@@ -13,6 +14,12 @@ const Sources = () => {
   const [selected, setSelected] = useState(sources[0]);
   const [isShow, setIsShow] = useState(false);
   const dispatch = useDispatch();
+
+  const [name, setName] = useState('');
+  const [shortName, setShortName] = useState('');
+  const [description, setDescription] = useState('');
+  const [lang, setLang] = useState('');
+
   const deleteSource = (source) => {
     dispatch(deleteSourceAction(source));
   };
@@ -49,7 +56,9 @@ const Sources = () => {
                      onKeyDown={() => {}}
                      className={style.cross}
                      style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
-                     onClick={() => (window.confirm('Confirm delete?') && deleteSource(el))}
+                     onClick={() => {
+                       deleteSource(el);
+                     }}
                    >
                      X
                    </div>
@@ -75,9 +84,41 @@ const Sources = () => {
             {`Lang: ${selected.lang}`}
           </div>
         </div>
-        <Modal isShow={isShow} closing={() => { setIsShow(!isShow); }}>
+        <Modal
+          sourceData={{
+            name, shortName, description, lang,
+          }}
+          isShow={isShow}
+          closing={() => { setIsShow(!isShow); setName(''); setDescription(''); setShortName(''); setLang(''); }}
+        >
           {{
             title: 'Add new source form',
+            modalBody: (
+              <div className={style.modalBody}>
+                <div className={style.inputs}>
+                  <span>name:</span>
+                  <Input type="text" value={name} onChange={setName} />
+                </div>
+                <div className={style.inputs}>
+                  <span>shortname:</span>
+                  <Input type="text" value={shortName} onChange={setShortName} />
+                </div>
+                <div className={style.inputs}>
+                  <span>description:</span>
+                  <textarea
+                    value={description}
+                    className={style.descriptionWindow}
+                    onChange={
+                    (e) => { setDescription(e.target.value); }
+}
+                  />
+                </div>
+                <div className={style.inputs}>
+                  <span>lang:</span>
+                  <Select options={[{ name: 'English', value: 'eng' }, { name: 'Russian', value: 'ru' }]} defaultValue={{ name: 'English', value: 'eng' }} selectValue={setLang} />
+                </div>
+              </div>
+            ),
           }}
         </Modal>
       </div>

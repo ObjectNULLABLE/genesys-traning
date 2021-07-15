@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import style from './style.module.scss';
 import { addSourceAction } from '../../features/sources/sourcesSlice';
 import Button from '../button';
-import Input from '../Input';
-import Select from '../select';
 
-const Modal = ({ children, isShow, closing }) => {
+const Modal = ({
+  children, isShow, closing, sourceData,
+}) => {
   const dispatch = useDispatch();
 
   const addSource = (name, shortName, description, lang) => {
@@ -21,11 +21,6 @@ const Modal = ({ children, isShow, closing }) => {
     closing();
   };
 
-  const [name, setName] = useState('');
-  const [shortName, setShortName] = useState('');
-  const [description, setDescription] = useState('');
-  const [lang, setLang] = useState('');
-
   return (
     <div style={isShow ? { display: 'block' } : { display: 'none' }} className={style.modal}>
       <div className={style.modalTitle}>
@@ -35,37 +30,24 @@ const Modal = ({ children, isShow, closing }) => {
           role="button"
           tabIndex={0}
           onKeyDown={() => {}}
-          onClick={() => (closing())}
+          onClick={() => closing()}
         >
           X
         </div>
       </div>
-      <div className={style.modalBody}>
-        <div className={style.inputs}>
-          <span>name:</span>
-          <Input type="text" value={name} onChange={setName} />
-        </div>
-        <div className={style.inputs}>
-          <span>shortname:</span>
-          <Input type="text" value={shortName} onChange={setShortName} />
-        </div>
-        <div className={style.inputs}>
-          <span>description:</span>
-          <textarea
-            value={description}
-            className={style.description}
-            onChange={
-            (e) => { setDescription(e.target.value.replace(/\n/g, '<br/>')); }
-}
-          />
-        </div>
-        <div className={style.inputs}>
-          <span>lang:</span>
-          <Select options={[{ name: 'English', value: 'eng' }, { name: 'Russian', value: 'rus' }]} selectValue={setLang} />
-        </div>
+      <div>
+        {children.modalBody}
       </div>
       <div className={style.modalFooter}>
-        <Button className={style.buttonSubmit} disabled onClick={() => { addSource(name, shortName, description, lang.value); }} caption="Add new" />
+        <Button
+          className={style.buttonSubmit}
+          onClick={() => {
+            addSource(
+              sourceData.name, sourceData.shortName, sourceData.description, sourceData.lang.value,
+            );
+          }}
+          caption="Add new"
+        />
       </div>
     </div>
 
@@ -75,17 +57,31 @@ const Modal = ({ children, isShow, closing }) => {
 Modal.propTypes = {
   children: PropTypes.shape({
     title: PropTypes.string,
+    modalBody: PropTypes.element,
   }),
   isShow: PropTypes.bool,
   closing: PropTypes.func,
+  sourceData: PropTypes.objectOf({
+    name: PropTypes.string,
+    shortName: PropTypes.string,
+    description: PropTypes.string,
+    lang: PropTypes.string,
+  }),
 };
 
 Modal.defaultProps = {
   children: {
     title: 'Default',
+    modalBody: <div />,
   },
   isShow: false,
   closing: () => {},
+  sourceData: PropTypes.objectOf({
+    name: 'name',
+    shortName: 'shortname',
+    description: 'description',
+    lang: 'lang',
+  }),
 };
 
 export default Modal;
