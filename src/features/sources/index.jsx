@@ -18,7 +18,7 @@ const Sources = () => {
   const [name, setName] = useState('');
   const [shortName, setShortName] = useState('');
   const [description, setDescription] = useState('');
-  const [lang, setLang] = useState({});
+  const [lang, setLang] = useState('');
 
   const addSource = () => {
     const note = {
@@ -129,7 +129,7 @@ const Sources = () => {
                   <span>lang:</span>
                   <Select
                     options={['eng', 'ru']}
-                    selectValue={setLang}
+                    setValue={setLang}
                   />
                 </div>
               </div>

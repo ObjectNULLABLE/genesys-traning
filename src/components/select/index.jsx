@@ -3,26 +3,27 @@ import PropTypes from 'prop-types';
 import Options from './options';
 import styles from './index.module.scss';
 
-const Select = ({ options, selectValue }) => {
-  const [show, setShow] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  selectValue(selectedOption);
+const Select = ({ options, setValue, value }) => {
+  const [showSelect, setShowSelect] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(options[0]);
   return (
     <div className={styles.Selector}>
       <div
+        value={value}
         className={styles.showDropdown}
         role="listbox"
         tabIndex={0}
         onKeyDown={() => { }}
-        onClick={() => setShow(!show)}
+        onClick={() => setShowSelect(!showSelect)}
       >
-        {selectedOption}
+        {selectedValue}
       </div>
-      {show && (
+      {showSelect && (
         <Options
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-          closeDropdown={() => setShow(false)}
+          value={value}
+          setValue={setValue}
+          setSelectedValue={setSelectedValue}
+          closeDropdown={() => { setShowSelect(false); }}
           options={options}
         />
       )}
@@ -33,10 +34,12 @@ export default Select;
 
 Select.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string),
-  selectValue: PropTypes.func,
+  value: PropTypes.string,
+  setValue: PropTypes.func,
 };
 
 Select.defaultProps = {
   options: [{}],
-  selectValue: () => {},
+  value: 'Default value',
+  setValue: () => {},
 };
