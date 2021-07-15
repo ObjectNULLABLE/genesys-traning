@@ -1,23 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './style.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import Button from '../../components/button';
+import { deleteSkillsAction } from './skillsSlice';
 
-const skill = [{
-  name: 'name',
-  characteristic: 'characterictic',
-  worlds: [],
-  type: '1',
-  description: 'description',
-  useIf: 'use',
-  notUseIf: 'notUse',
-  sourceID: 1,
-  lang: 'lang',
-}];
-const content = [{ name: 'obj 1' }, { name: 'obj 2' }, { name: 'obj 3' }, { name: 'obj 4' }];
-
-function Skills() {
+const Skills = () => {
+  const skills = useSelector((state) => state.skills.data);
+  const [filterValue, setFilterValue] = useState('');
+  const [selected, setSelected] = useState(skills[0]);
+  const dispatch = useDispatch();
+  const deleteSkill = (source) => {
+    dispatch(deleteSkillsAction(source));
+  };
   return (
     <div className={style.sourceBody}>
       <Menu>
@@ -25,53 +21,85 @@ function Skills() {
           header: (
             <div>
               <div className={style.header}>Skills</div>
-              <Input className={style.search} onChange={() => {}} type="text" />
+              <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
-            <div>
-              {content.map((el) => (
-                <div className={style.listElement} key={el.name}>
-                  {el.name}
-                </div>
-              ))}
+            <div className={style.elements}>
+              {
+               skills.filter((item) => (
+                 item.name.toLowerCase().includes(filterValue.toLowerCase())
+               )).map((el) => (
+                 <div
+                   role="button"
+                   tabIndex={0}
+                   onKeyDown={() => { }}
+                   onClick={() => {
+                     setSelected(el);
+                   }}
+                   key={el.name}
+                   style={selected.name === el.name ? { background: 'rgb(129, 45, 45) ' } : { background: 'rgb(41, 15, 15)' }}
+                   className={style.listElement}
+                 >
+                   {el.name}
+                   <div
+                     role="button"
+                     tabIndex={0}
+                     onKeyDown={() => {}}
+                     className={style.cross}
+                     style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
+                     onClick={() => (window.confirm('Confirm delete?') && deleteSkill(el))}
+                   >
+                     X
+                   </div>
+                 </div>
+               ))
+              }
             </div>),
-          footer: <Button caption="Add new Skill" className={style.addButton} onClick={() => {}} />,
+          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => {}} />,
         }}
       </Menu>
       <div className={style.skills}>
-        <div className={style.wrap1}>
-          <div className={style.name}>
-            {skill[0].name}
-          </div>
-          <div className={style.lang}>
-            {skill[0].lang}
-          </div>
+        <div className={style.name}>
+          <span>Name of talent: </span>
+          {selected.name}
         </div>
         <div className={style.description}>
-          {skill[0].description}
+          {selected.description}
+          <div className={style.useIf}>
+            {selected.useIf}
+          </div>
+          <div className={style.notUseIf}>
+            {selected.notUseIf}
+          </div>
         </div>
-        <div className={style.worlds}>
-          {skill[0].worlds}
-        </div>
-        <div className={style.type}>
-          {skill[0].type}
-        </div>
-        <div className={style.characteristic}>
-          {skill[0].characteristic}
-        </div>
-        <div className={style.useIf}>
-          {skill[0].useIf}
-        </div>
-        <div className={style.notUseIf}>
-          {skill[0].notUseIf}
-        </div>
-        <div className={style.sourceID}>
-          {skill[0].sourseID}
-        </div>
+        <div className={style.info}>
+          <div className={style.infoItem}>
+            <span>Worlds: </span>
+            {selected.worlds.map((world) => (
+              <span>
 
+                {`${world}, `}
+
+              </span>
+            ))}
+          </div>
+          <div className={style.infoItem}>
+            <span>Language: </span>
+            {selected.lang}
+          </div>
+          <div className={style.infoItem}>
+            <span>Type: </span>
+            {selected.type}
+          </div>
+          <div className={style.infoItem}>
+            <span>Characteristic: </span>
+            {selected.characteristic}
+          </div>
+        </div>
       </div>
+
     </div>
   );
-}
+};
 
 export default Skills;

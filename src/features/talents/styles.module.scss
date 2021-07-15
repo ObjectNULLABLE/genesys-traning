@@ -1,6 +1,25 @@
 .talentsBody{
         display:flex;
         width: 100%;
+        .elements{
+            display: flex;
+            flex-direction: column;
+        .listElement{
+            display:flex;
+            padding:1rem;
+            cursor: pointer;
+            &:hover{
+                background-color:rgb(129, 45, 45) ;
+                transition:0.5s;
+            }
+            .cross{
+                display: flex;
+                align-items: flex-end;
+                margin-left: auto;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        }
+    }
         .listElement{
             padding:1rem;
             cursor: pointer;
@@ -20,45 +39,34 @@
         flex-direction: column;
         align-items: center;
         font-size: 2rem;
-        .wrap1 {
+        .name {
             margin-bottom: 1rem;
-            display: flex;
-            width: 30rem;
-            justify-content: space-around;
-            div {
-                border-right: solid rgb(0, 0, 0);
-                text-align: center;
-                padding-right: 3.5rem;
-                &:last-child{
-                border-right-width: 0;
-                }
-            }
-            
         }
-
-        
         .description {
-
-            height: 30rem;
-            width: 40rem;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-y: auto;
+            height: 40rem;
+            width: 70rem;
             padding : 1rem;
-            font-size: 1rem;
-        text-align:justify;
-            background-color: rgb(192, 186, 185) ;
+            font-size: 1.5rem;
+            text-align:justify;
+            background-color: rgb(41, 15, 15) ;
+            color:white;
             box-shadow: 0 0 34px rgba(0, 0, 0, 0.9);
-
         }
-        .worlds{
-            display: inline-block;
-
+        .info{
+            display: flex;
+            flex-wrap: wrap;
+            width: 40rem;
+            
+            span {
+                font-weight: bold;
+            }
+            .infoItem{
+                text-align: center;
+                width:50%;
+                flex-wrap: wrap;
+            }
         }
-        
-        .lang {
-            display: inline-block;
-        }
-        .activation {
-            margin-bottom: 1rem;
-        }
-        
     }
 }
