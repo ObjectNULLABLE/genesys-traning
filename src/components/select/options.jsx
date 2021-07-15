@@ -13,7 +13,7 @@ const Options = ({
     role="option"
     aria-selected
     tabIndex={0}
-    key={Date.now()}
+    key={option}
     onKeyDown={() => { }}
     onClick={() => {
       SelectValue(option, setSelectedOption, selectedOption, defaultValue);
@@ -21,7 +21,7 @@ const Options = ({
     }}
     className={styles.option}
   >
-    {option.name}
+    {option}
   </div>
 )));
 
