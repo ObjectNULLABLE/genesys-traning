@@ -20,10 +20,12 @@ const Select = ({ options, selectValue, defaultValue }) => {
       </div>
       {show && (
         <Options
-          defaultValue={defaultValue}
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
-          closeDropdown={() => setShow(false)}
+          closeDropdown={() => {
+            setShow(false);
+            setSelectedOption(defaultValue);
+          }}
           options={options}
         />
       )}
@@ -37,8 +39,11 @@ Select.propTypes = {
     name: PropTypes.string,
     value: PropTypes.string,
   })),
-  defaultValue: PropTypes.func,
   selectValue: PropTypes.func,
+  defaultValue: PropTypes.arrayOf(PropTypes.objectOf({
+    name: PropTypes.string,
+    value: PropTypes.string,
+  })),
 };
 
 Select.defaultProps = {

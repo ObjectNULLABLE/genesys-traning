@@ -1,0 +1,55 @@
+.modal
+{
+    background-color: white;
+    width:20rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    .modalTitle
+    {
+        padding:1rem 0 1rem 0;
+        text-align: center;
+        width: 100%;
+        height: 2rem;
+        font-size: 20px;
+        background-color: rgb(41, 15, 15);
+        color:white;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+        border-radius: 20px 20px 0 0;
+        display: flex;
+        .cross{
+            padding-right: 1rem;
+            display: flex;
+            margin-left: auto;
+            cursor: pointer;
+        }
+        .title{
+            padding-left: 1rem;
+        }
+    }
+    .modalBody{
+        span{
+            color:white;
+        }
+        .inputs{
+            padding:0rem 1rem 0rem 1rem;
+            text-align: center;
+            justify-content: center;
+            background-color:rgb(129, 45, 45);
+            .description{
+                min-width: 100%;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    }
+    .modalFooter{
+        display: flex;
+        width:100%;
+        .buttonSubmit{
+            width:100%;
+        }
+    }
+
+}
