@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import style from './styles.module.scss';
+import style from '../styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import Button from '../../components/button';
@@ -15,7 +15,7 @@ const Qualities = () => {
     dispatch(deleteQualitiesAction(quality));
   };
   return (
-    <div className={style.sourceBody}>
+    <div className={style.featureBody}>
       <Menu>
         {{
           header: (
@@ -59,26 +59,19 @@ const Qualities = () => {
         }}
       </Menu>
 
-      <div className={style.qualities}>
+      <div className={style.features}>
         <div className={style.name}>
           {selected.name}
         </div>
         <div className={style.description}>
-          {selected.description}
-        </div>
-        <div className={style.info}>
           <div className={style.infoItem}>
+            <span>Active: </span>
             {selected.active === false ? 'false' : 'true'}
           </div>
-          <div className={style.sourceID}>
-            {selected.sourceID}
-          </div>
-          <div className={style.infoItem}>
-            {selected.lang}
-          </div>
+          <span>Description: </span>
+          {selected.description}
         </div>
       </div>
-
     </div>
   );
 };

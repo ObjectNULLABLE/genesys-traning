@@ -1,4 +1,4 @@
-.sourceBody{
+.featureBody{
     display:flex;
     width:100%;
     .elements{
@@ -26,7 +26,7 @@
     .name{
         padding-bottom:1rem;
     }
-    .qualities{
+    .features{
         flex:1;
         margin: 1rem;
         display: flex;
@@ -37,7 +37,6 @@
     .description{
         font-family: Arial, Helvetica, sans-serif;
         overflow-y: auto;
-        height: 40rem;
         width: 70rem;
         padding : 1rem;
         font-size: 1.5rem;
@@ -45,22 +44,19 @@
         background-color: rgb(41, 15, 15) ;
         color:white;
         box-shadow: 0 0 34px rgba(0, 0, 0, 0.9);
-    }
-    .info{
-        display: flex;
-        flex-wrap: wrap;
-        width: 40rem;
+        white-space: pre-wrap;
+        span{
+                font-weight: 900;
+            }
         .infoItem{
             text-align: justify;
-            width:50%;
-            flex-wrap: wrap;
-        }
+            display: flex;
+            align-items: center;
+            span {
+                font-weight: 900;
+            } 
+        }    
     }
-    .sourceID{
-        text-align: justify;
-    }
-
-
 }
 
 
