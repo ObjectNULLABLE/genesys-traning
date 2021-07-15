@@ -15,8 +15,14 @@ const sourcesSlice = createSlice({
         (source) => source.name !== action.payload.name,
       );
     },
+    updateSourceAction(state, action) {
+      const index = state.data.findIndex(
+        (source) => source.name === action.payload.current.name,
+      );
+      state.data[index] = action.payload.new;
+    },
   },
 });
 
 export default sourcesSlice.reducer;
-export const { addSourceAction, deleteSourceAction } = sourcesSlice.actions;
+export const { addSourceAction, deleteSourceAction, updateSourceAction } = sourcesSlice.actions;
