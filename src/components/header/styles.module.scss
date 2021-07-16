@@ -13,7 +13,7 @@
         color: rgb(255, 255, 255);
         font-size: larger;
         height: 100%;
-        width:17%;
+        width:12.5%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -24,5 +24,16 @@
                 color: rgb(0, 0, 0);
             }
         } 
+    .account{
+        display: flex;
+        justify-content: flex-end;
+        text-decoration: none;
+        height: 2rem;
+        width: 4rem;
+        background-color: rgb(219, 195, 163);
+        border-radius: 0.5rem;
+        color: black;
+        align-items: center;
+    }
     }
 }

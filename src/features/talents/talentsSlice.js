@@ -8,7 +8,7 @@ const talentsSlice = createSlice({
   },
   reducers: {
     addTalentsAction(state, action) {
-      state.talents = [...state.talents, action.payload];
+      state.data = [...state.data, action.payload];
     },
     deleteTalentsAction(state, action) {
       state.data = state.data.filter(
