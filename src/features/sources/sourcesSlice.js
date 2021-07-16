@@ -8,7 +8,7 @@ const sourcesSlice = createSlice({
   },
   reducers: {
     addSourceAction(state, action) {
-      state.sources = [...state.sources, action.payload];
+      state.data = [...state.data, action.payload];
     },
     deleteSourceAction(state, action) {
       state.data = state.data.filter(

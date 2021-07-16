@@ -28,28 +28,10 @@
             padding-left: 1rem;
         }
     }
-    .modalBody{
-        span{
-            color:white;
-        }
-        .inputs{
-            padding:0rem 1rem 0rem 1rem;
-            text-align: center;
-            justify-content: center;
-            background-color:rgb(129, 45, 45);
-            .description{
-                min-width: 100%;
-                width: 100%;
-                max-width: 100%;
-            }
-        }
-    }
     .modalFooter{
         display: flex;
         width:100%;
-        .buttonSubmit{
-            width:100%;
-        }
+        
     }
 
 }

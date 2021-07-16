@@ -3,17 +3,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from '../styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
+import { deleteSourceAction, addSourceAction } from './sourcesSlice';
 import Button from '../../components/button';
-import { deleteSourceAction } from './sourcesSlice';
+import Modal from '../../components/modal';
+import Select from '../../components/select';
 
 const Sources = () => {
   const sources = useSelector((state) => state.sources.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(sources[0]);
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
+
+  const [name, setName] = useState('');
+  const [shortName, setShortName] = useState('');
+  const [description, setDescription] = useState('');
+  const [lang, setLang] = useState('');
+
+  const addSource = () => {
+    const note = {
+      name,
+      shortName,
+      description,
+      lang,
+    };
+    dispatch(addSourceAction(note));
+  };
+
   const deleteSource = (source) => {
     dispatch(deleteSourceAction(source));
   };
+
   return (
     <div className={style.featureBody}>
       <Menu>
@@ -24,7 +44,7 @@ const Sources = () => {
               <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
-            <div className={style.elements}>
+            <div className={style.sources}>
               {
                sources.filter((item) => (
                  item.name.toLowerCase().includes(filterValue.toLowerCase())
@@ -32,7 +52,7 @@ const Sources = () => {
                  <div
                    role="button"
                    tabIndex={0}
-                   onKeyDown={() => { }}
+                   onKeyDown={() => {}}
                    onClick={() => {
                      setSelected(el);
                    }}
@@ -47,7 +67,9 @@ const Sources = () => {
                      onKeyDown={() => {}}
                      className={style.buttonDelete}
                      style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
-                     onClick={() => (window.confirm('Confirm delete?') && deleteSource(el))}
+                     onClick={() => {
+                       deleteSource(el);
+                     }}
                    >
                      X
                    </div>
@@ -55,7 +77,7 @@ const Sources = () => {
                ))
               }
             </div>),
-          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => {}} />,
+          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setShow(!show); }} />,
         }}
       </Menu>
       <div className={style.features}>
@@ -67,6 +89,54 @@ const Sources = () => {
           <span>Description: </span>
           {selected.description}
         </div>
+        {show && (
+        <Modal
+          sourceData={{
+            name, shortName, description, lang,
+          }}
+          show={show}
+          closeModal={() => { setShow(!show); setName(''); setDescription(''); setShortName(''); setLang(''); }}
+        >
+          {{
+            title: 'Add new source form',
+            modalBody: (
+              <div className={style.modalBody}>
+                <div className={style.inputs}>
+                  <span>name:</span>
+                  <Input type="text" value={name} onChange={setName} />
+                </div>
+                <div className={style.inputs}>
+                  <span>shortname:</span>
+                  <Input type="text" value={shortName} onChange={setShortName} />
+                </div>
+                <div className={style.inputs}>
+                  <span>description:</span>
+                  <textarea
+                    value={description}
+                    className={style.descriptionWindow}
+                    onChange={
+                    (e) => { setDescription(e.target.value); }
+}
+                  />
+                </div>
+                <div className={style.inputs}>
+                  <span>lang:</span>
+                  <Select
+                    options={['eng', 'ru']}
+                    setValue={setLang}
+                  />
+                </div>
+              </div>
+            ),
+            footer: (
+              <Button
+                className={style.buttonSubmit}
+                onClick={() => { addSource(); setShow(!show); }}
+                caption="Add new"
+              />),
+          }}
+        </Modal>
+        )}
       </div>
     </div>
   );

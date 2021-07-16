@@ -8,7 +8,7 @@ function Input({ value, onChange, type }) {
       className={styles.input}
       type={type}
       onChange={(event) => { onChange(event.target.value); }}
-      defaultValue={value}
+      value={value}
     />
   );
 }
