@@ -33,7 +33,10 @@ const Select = ({ options, setValue, value }) => {
 export default Select;
 
 Select.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string),
+  options: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.arrayOf(PropTypes.bool),
+  ]),
   value: PropTypes.string,
   setValue: PropTypes.func,
 };

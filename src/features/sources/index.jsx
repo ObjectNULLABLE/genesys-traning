@@ -49,10 +49,12 @@ const Sources = () => {
         lang,
       },
     };
+    setSelected(object.new);
     dispatch(updateSourceAction(object));
   };
 
   const deleteSource = (source) => {
+    setSelected(sources[0]);
     dispatch(deleteSourceAction(source));
   };
 
@@ -115,7 +117,7 @@ const Sources = () => {
                ))
               }
             </div>),
-          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setShow(!show); }} />,
+          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setShow(!show); setName(''); setDescription(''); setShortName(''); }} />,
         }}
       </Menu>
       <div className={style.sourcePrototype}>
@@ -137,9 +139,6 @@ const Sources = () => {
         </div>
         {show && (
         <Modal
-          sourceData={{
-            name, shortName, description, lang,
-          }}
           show={show}
           closeModal={() => { setShow(!show); setName(''); setDescription(''); setShortName(''); }}
         >
@@ -155,6 +154,7 @@ const Sources = () => {
                   <span>shortname:</span>
                   <Input type="text" value={shortName} onChange={setShortName} />
                 </div>
+
                 <div className={style.inputs}>
                   <span>description:</span>
                   <textarea
@@ -168,7 +168,7 @@ const Sources = () => {
                 <div className={style.inputs}>
                   <span>lang:</span>
                   <Select
-                    options={['eng', 'ru']}
+                    options={[true, false]}
                     setValue={setLang}
                   />
                 </div>
@@ -185,9 +185,6 @@ const Sources = () => {
         )}
         {showEdit && (
         <Modal
-          sourceData={{
-            name, shortName, description, lang,
-          }}
           show={showEdit}
           closeModal={() => { setShowEdit(!showEdit); setName(''); setDescription(''); setShortName(''); setLang(''); }}
         >
@@ -218,6 +215,7 @@ const Sources = () => {
                   <Select
                     options={languages}
                     setValue={setLang}
+                    value={lang}
                   />
                 </div>
               </div>

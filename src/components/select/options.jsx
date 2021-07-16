@@ -9,16 +9,16 @@ const Options = ({
     role="option"
     aria-selected
     tabIndex={0}
-    key={option}
+    key={option.name}
     onKeyDown={() => { }}
     onClick={() => {
-      setValue(option);
-      setSelectedValue(option);
+      setValue(option.value);
+      setSelectedValue(option.name);
       closeDropdown();
     }}
     className={styles.option}
   >
-    {option}
+    {option.name}
   </div>
 )));
 

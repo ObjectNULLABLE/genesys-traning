@@ -11,9 +11,8 @@ const sourcesSlice = createSlice({
       state.data = [...state.data, action.payload];
     },
     deleteSourceAction(state, action) {
-      state.data = state.data.filter(
-        (source) => source.name !== action.payload.name,
-      );
+      state.data = [
+        ...state.data.filter((item) => item.name !== action.payload.name)];
     },
     updateSourceAction(state, action) {
       const index = state.data.findIndex(
