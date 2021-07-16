@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import style from './style.module.scss';
+import style from '../styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import { deleteSourceAction, addSourceAction } from './sourcesSlice';
@@ -35,7 +35,7 @@ const Sources = () => {
   };
 
   return (
-    <div className={style.sourceBody}>
+    <div className={style.featureBody}>
       <Menu>
         {{
           header: (
@@ -65,7 +65,7 @@ const Sources = () => {
                      role="button"
                      tabIndex={0}
                      onKeyDown={() => {}}
-                     className={style.cross}
+                     className={style.buttonDelete}
                      style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
                      onClick={() => {
                        deleteSource(el);
@@ -80,20 +80,14 @@ const Sources = () => {
           footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setShow(!show); }} />,
         }}
       </Menu>
-      <div className={style.sourcePrototype}>
+      <div className={style.features}>
         <div className={style.name}>
-          {`Name: ${selected.name}`}
+          {selected.name}
+          {` (${selected.shortName})`}
         </div>
         <div className={style.description}>
+          <span>Description: </span>
           {selected.description}
-        </div>
-        <div className={style.info}>
-          <div className={style.infoItem}>
-            {`Shortname: ${selected.shortName}`}
-          </div>
-          <div className={style.infoItem}>
-            {`Lang: ${selected.lang}`}
-          </div>
         </div>
         {show && (
         <Modal
@@ -144,7 +138,6 @@ const Sources = () => {
         </Modal>
         )}
       </div>
-
     </div>
   );
 };

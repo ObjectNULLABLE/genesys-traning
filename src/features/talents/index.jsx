@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styles from './styles.module.scss';
+import styles from '../styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
 import Button from '../../components/button';
@@ -41,7 +41,7 @@ const Talents = () => {
   };
 
   return (
-    <div className={styles.talentsBody}>
+    <div className={styles.featureBody}>
       <Menu>
         {{
           header: (
@@ -94,15 +94,11 @@ const Talents = () => {
           footer: <Button caption="Add new Source" className={styles.addButton} onClick={() => {}} />,
         }}
       </Menu>
-      <div className={styles.talents}>
+      <div className={styles.features}>
         <div className={styles.name}>
-          <span>Name of talent: </span>
           {selected.name}
         </div>
         <div className={styles.description}>
-          {selected.description}
-        </div>
-        <div className={styles.info}>
           <div className={styles.infoItem}>
             <span>Tier: </span>
             {selected.tier}
@@ -118,17 +114,13 @@ const Talents = () => {
           <div className={styles.infoItem}>
             <span>Worlds: </span>
             {selected.worlds.map((world) => (
-              <span>
-
+              <div>
                 {`${world}, `}
-
-              </span>
+              </div>
             ))}
           </div>
-          <div className={styles.infoItem}>
-            <span>Language: </span>
-            {selected.lang}
-          </div>
+          <span>Description: </span>
+          {selected.description}
         </div>
         {show && (
         <Modal
