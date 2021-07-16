@@ -147,16 +147,16 @@ const Sources = () => {
             modalBody: (
               <div className={style.modalBody}>
                 <div className={style.inputs}>
-                  <span>name:</span>
+                  <span>Name:</span>
                   <Input type="text" value={name} onChange={setName} />
                 </div>
                 <div className={style.inputs}>
-                  <span>shortname:</span>
+                  <span>Shortname:</span>
                   <Input type="text" value={shortName} onChange={setShortName} />
                 </div>
 
                 <div className={style.inputs}>
-                  <span>description:</span>
+                  <span>Description:</span>
                   <textarea
                     value={description}
                     className={style.descriptionWindow}
@@ -166,9 +166,10 @@ const Sources = () => {
                   />
                 </div>
                 <div className={style.inputs}>
-                  <span>lang:</span>
+                  <span>Language:</span>
                   <Select
-                    options={[true, false]}
+                    value=""
+                    options={languages}
                     setValue={setLang}
                   />
                 </div>

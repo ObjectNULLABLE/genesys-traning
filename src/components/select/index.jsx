@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import Options from './options';
 import styles from './index.module.scss';
 
-const Select = ({ options, setValue, value }) => {
+const Select = ({
+  options, setValue, value,
+}) => {
   const [showSelect, setShowSelect] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(options[0]);
+  const [selectedValue, setSelectedValue] = useState(value);
   return (
     <div className={styles.Selector}>
       <div
@@ -16,10 +18,13 @@ const Select = ({ options, setValue, value }) => {
         onKeyDown={() => { }}
         onClick={() => setShowSelect(!showSelect)}
       >
-        {selectedValue}
+        {
+          value === '' ? selectedValue : value
+        }
       </div>
       {showSelect && (
         <Options
+          selectedValue={selectedValue}
           value={value}
           setValue={setValue}
           setSelectedValue={setSelectedValue}
@@ -33,16 +38,12 @@ const Select = ({ options, setValue, value }) => {
 export default Select;
 
 Select.propTypes = {
-  options: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.arrayOf(PropTypes.bool),
-  ]),
-  value: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.string),
+  value: PropTypes.string.isRequired,
   setValue: PropTypes.func,
 };
 
 Select.defaultProps = {
   options: [{}],
-  value: 'Default value',
   setValue: () => {},
 };
