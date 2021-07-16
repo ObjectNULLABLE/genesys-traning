@@ -100,8 +100,8 @@ const Sources = () => {
           {{
             title: 'Add new source form',
             modalBody: (
-              <div>
-                <div>
+              <div className={style.modalBody}>
+                <div className={style.inputs}>
                   <span>name:</span>
                   <Input type="text" value={name} onChange={setName} />
                 </div>

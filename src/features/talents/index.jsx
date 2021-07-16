@@ -24,8 +24,8 @@ const Talents = () => {
   const [tier, setTier] = useState('');
   const [lang, setLang] = useState('');
   const [activation, setActivation] = useState('');
-  const [ranked, setRanked] = useState('');
-  const [worlds, setWorlds] = useState('');
+  const [ranked, setRanked] = useState(false);
+  const [worlds, setWorlds] = useState([]);
 
   const addTalent = () => {
     const note = {
@@ -33,8 +33,8 @@ const Talents = () => {
       description,
       lang,
       tier,
-      activation,
       ranked,
+      activation,
       worlds,
     };
     dispatch(addTalentsAction(note));
@@ -67,7 +67,7 @@ const Talents = () => {
                    className={styles.listElement}
                  >
                    {el.name}
-                   <div className={styles.cross}>
+                   <div className={styles.buttonDelete}>
                      <div
                        role="button"
                        tabIndex={0}
@@ -91,7 +91,7 @@ const Talents = () => {
                ))
               }
             </div>),
-          footer: <Button caption="Add new Source" className={styles.addButton} onClick={() => {}} />,
+          footer: <Button caption="Add new Talent" className={styles.addButton} onClick={() => { setShow(!show); }} />,
         }}
       </Menu>
       <div className={styles.features}>
@@ -124,15 +124,6 @@ const Talents = () => {
         </div>
         {show && (
         <Modal
-          sourceData={{
-            name,
-            description,
-            lang,
-            tier,
-            activation,
-            ranked,
-            worlds,
-          }}
           show={show}
           closeModal={() => {
             setShow(!show);
@@ -140,8 +131,8 @@ const Talents = () => {
             setDescription('');
             setTier('');
             setLang('');
-            setRanked('');
-            setWorlds('');
+            setRanked(false);
+            setWorlds([]);
             setActivation('');
           }}
         >
@@ -159,7 +150,10 @@ const Talents = () => {
                 </div>
                 <div className={styles.inputs}>
                   <span>ranked:</span>
-                  <Input type="text" value={ranked} onChange={setRanked} />
+                  <Select
+                    options={[true, false]}
+                    setValue={setRanked}
+                  />
                 </div>
                 <div className={styles.inputs}>
                   <span>worlds:</span>
