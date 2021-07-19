@@ -145,10 +145,10 @@ const Qualities = () => {
                 <div className={style.inputs}>
                   <span>active:</span>
                   <Select
-                    options={['eng', 'ru']}
+                    options={[true, false]}
                     setValue={setActive}
+                    value={active}
                   />
-                  <Input type="text" value={active} onChange={setActive} />
                 </div>
                 <div className={style.inputs}>
                   <span>description:</span>
@@ -165,6 +165,7 @@ const Qualities = () => {
                   <Select
                     options={['eng', 'ru']}
                     setValue={setLang}
+                    value={lang}
                   />
                 </div>
               </div>
@@ -192,8 +193,12 @@ const Qualities = () => {
                     <Input type="text" value={name} onChange={setName} />
                   </div>
                   <div className={style.inputs}>
-                    <span>shortname:</span>
-                    <Input type="text" value={active} onChange={setActive} />
+                    <span>active:</span>
+                    <Select
+                      options={[true, false]}
+                      setValue={setActive}
+                      value={active}
+                    />
                   </div>
                   <div className={style.inputs}>
                     <span>description:</span>

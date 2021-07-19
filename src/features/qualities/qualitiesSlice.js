@@ -11,7 +11,7 @@ const qualitiesSlice = createSlice({
       state.data = [...state.data, action.payload];
     },
     deleteQualitiesAction(state, action) {
-      state.data = state.data.filter(
+      state.sources.data = state.sources.filter(
         (quality) => quality.name !== action.payload.name,
       );
     },

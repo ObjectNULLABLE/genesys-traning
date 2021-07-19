@@ -37,3 +37,29 @@
     }
     }
 }
+.modalPlace{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .modalBody{
+            margin-top: 4rem;
+            width:100%;
+            span{
+                color:white;
+            }
+        .inputs{
+            padding:0rem 1rem 0rem 1rem;
+            text-align: center;
+            justify-content: center;
+            background-color:rgb(129, 45, 45);
+            .descriptionWindow{
+                min-width: 100%;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        }
+        .buttonSubmit{
+            width:100%;
+        }
+    }
