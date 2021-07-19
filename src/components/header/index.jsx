@@ -6,8 +6,8 @@ import Button from '../button';
 import Input from '../Input';
 
 function Header() {
-  const onRegister = () => {
-
+  const onRegister = (password, confirmPassword) => {
+    alert(password === confirmPassword ? 'Пароли совпадают' : 'Пароли не совпадают');
   };
 
   const [showRegister, setShowRegister] = useState(false);

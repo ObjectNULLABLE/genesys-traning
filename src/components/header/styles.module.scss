@@ -35,6 +35,7 @@
         display: flex;
         justify-content:space-around;
         cursor: pointer;
+
     }
     .account{
         text-decoration: none;
@@ -54,6 +55,8 @@
 }
 
 .modalPlace{
+    position: absolute;
+    margin-top:10rem;
     width:100%;
     display: flex;
     justify-content: center;
