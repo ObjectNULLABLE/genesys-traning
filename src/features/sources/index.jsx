@@ -144,16 +144,17 @@ const Sources = () => {
                 <div className={style.modalBody}>
                   <div className={style.inputs}>
                     <span>Name:</span>
-                    <Input type="text" value={name} onChange={setName} />
+                    <Input type="text" value={name} onChange={setName} placeholder="Input name" />
                   </div>
                   <div className={style.inputs}>
                     <span>Shortname:</span>
-                    <Input type="text" value={shortName} onChange={setShortName} />
+                    <Input type="text" value={shortName} onChange={setShortName} placeholder="Input shortname" />
                   </div>
 
                   <div className={style.inputs}>
                     <span>Description:</span>
                     <textarea
+                      placeholder="Input description"
                       value={description}
                       className={style.descriptionWindow}
                       onChange={

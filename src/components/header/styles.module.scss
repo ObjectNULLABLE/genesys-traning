@@ -9,31 +9,75 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-    .navLink {
-        color: rgb(255, 255, 255);
+    .links{
+        display:flex;
+        width:80%;
+        height:100%;
+        .navLink {
+            color: rgb(255, 255, 255);
+            font-size: larger;
+            height: 100%;
+            width:12.5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.5s;
+                &:hover {
+                    background-color: rgb(255, 255, 255);
+                    color: rgb(0, 0, 0);
+                }
+            } 
+    }
+    .accountPlace{
+        height: 100%;
+        width:20%;
+        display: flex;
+        justify-content:space-around;
+        cursor: pointer;
+    }
+    .account{
+        text-decoration: none;
         font-size: larger;
         height: 100%;
-        width:12.5%;
-        display: flex;
+        width: 50%;
+        color: white;
+        display:flex;
         align-items: center;
         justify-content: center;
-        text-decoration: none;
-        transition: all 0.5s;
-            &:hover {
-                background-color: rgb(255, 255, 255);
-                color: rgb(0, 0, 0);
-            }
-        } 
-    .account{
-        display: flex;
-        justify-content: flex-end;
-        text-decoration: none;
-        height: 2rem;
-        width: 4rem;
-        background-color: rgb(219, 195, 163);
-        border-radius: 0.5rem;
-        color: black;
-        align-items: center;
+        &:hover {
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+        }
     }
     }
 }
+
+.modalPlace{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+
+.modalBody{
+    width:100%;
+    span{
+        color:white;
+    }
+    .inputs{
+        text-align: center;
+        justify-content: center;
+        background-color:rgb(129, 45, 45);
+        .inputName{
+            font-size: 30px;
+        }
+        .descriptionWindow{
+            min-width: 100%;
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+    }
+    .buttonSubmit{
+        width:100%;
+    }
