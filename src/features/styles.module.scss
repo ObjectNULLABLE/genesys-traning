@@ -15,9 +15,18 @@
         }
         .buttonDelete{
             display: flex;
-            align-items: flex-end;
-            margin-left: auto;
-            font-family: Arial, Helvetica, sans-serif;
+                flex:1;
+                width: 100%;
+                justify-content: flex-end;
+                align-items: center;
+                font-family: Arial, Helvetica, sans-serif;
+                div{
+                    margin-right: 0.5rem;
+                    width: 1rem;
+                  svg {
+                    width: 100%;
+                }  
+                }
         }
     }
     .addButton{
@@ -48,14 +57,15 @@
         span{
                 font-weight: 900;
             }
-        .infoItem{
+        white-space:pre-wrap;
+    .infoItem{
             text-align: justify;
             display: flex;
             align-items: center;
             span {
                 font-weight: 900;
             } 
-        }    
+        }   
     }
     .modalBody{
     width:100%;
@@ -78,6 +88,3 @@
         width:100%;
     }
 }
-
-
-
