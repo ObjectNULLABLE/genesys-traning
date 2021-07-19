@@ -153,6 +153,7 @@ const Talents = () => {
                   <Select
                     options={[true, false]}
                     setValue={setRanked}
+                    value={ranked}
                   />
                 </div>
                 <div className={styles.inputs}>
@@ -178,6 +179,7 @@ const Talents = () => {
                   <Select
                     options={['eng', 'ru']}
                     setValue={setLang}
+                    value={lang}
                   />
                 </div>
               </div>
