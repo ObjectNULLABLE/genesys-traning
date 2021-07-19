@@ -19,7 +19,7 @@ const Options = ({
     className={styles.option}
   >
     {
-      option
+      option.toString()
 }
   </div>
 )));

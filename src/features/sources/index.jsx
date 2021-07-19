@@ -13,7 +13,7 @@ const languages = ['eng', 'ru'];
 const Sources = () => {
   const sources = useSelector((state) => state.sources.data);
   const [filterValue, setFilterValue] = useState('');
-  const [selected, setSelected] = useState(sources[0]);
+  const [selected, setSelected] = useState('');
   const [showAdd, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
@@ -49,7 +49,7 @@ const Sources = () => {
         lang,
       },
     };
-    setSelected(object.new);
+    setSelected(object);
     dispatch(updateSourceAction(object));
   };
 
@@ -120,14 +120,19 @@ const Sources = () => {
         }}
       </Menu>
       <div className={style.features}>
-        <div className={style.name}>
-          {selected.name}
-          {` (${selected.shortName})`}
+        {selected
+        && (
+        <div>
+          <div className={style.name}>
+            {selected.name}
+            {` (${selected.shortName})`}
+          </div>
+          <div className={style.description}>
+            <span>Description: </span>
+            {selected.description}
+          </div>
         </div>
-        <div className={style.description}>
-          <span>Description: </span>
-          {selected.description}
-        </div>
+        )}
         {showAdd && (
           <Modal
             showAdd={showAdd}

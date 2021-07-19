@@ -19,7 +19,7 @@ const Select = ({
         onClick={() => setShowSelect(!showSelect)}
       >
         {
-          value === '' ? selectedValue : value
+          value === '' ? selectedValue.toString() : value.toString()
         }
       </div>
       {showSelect && (
