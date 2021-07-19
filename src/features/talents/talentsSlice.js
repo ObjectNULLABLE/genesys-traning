@@ -11,12 +11,17 @@ const talentsSlice = createSlice({
       state.data = [...state.data, action.payload];
     },
     deleteTalentsAction(state, action) {
-      state.data = state.data.filter(
-        (talent) => talent.name !== action.payload.name,
+      state.data = [
+        ...state.data.filter((item) => item.id !== action.payload)];
+    },
+    updateTalentsAction(state, action) {
+      const index = state.data.findIndex(
+        (talent) => talent.name === action.payload.current.name,
       );
+      state.data[index] = action.payload.new;
     },
   },
 });
 
 export default talentsSlice.reducer;
-export const { addTalentsAction, deleteTalentsAction } = talentsSlice.actions;
+export const { addTalentsAction, deleteTalentsAction, updateTalentsAction } = talentsSlice.actions;

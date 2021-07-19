@@ -6,26 +6,28 @@ import Input from '../../components/Input';
 import Button from '../../components/button';
 import Select from '../../components/select';
 import Modal from '../../components/modal';
-import { deleteTalentsAction, addTalentsAction } from './talentsSlice';
+import { deleteTalentsAction, addTalentsAction, updateTalentsAction } from './talentsSlice';
 
 const Talents = () => {
   const talents = useSelector((state) => state.talents.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(talents[0]);
   const dispatch = useDispatch();
-  const deleteTalent = (source) => {
-    dispatch(deleteTalentsAction(source));
+  const [showEdit, setShowEdit] = useState(false);
+
+  const deleteTalent = (id) => {
+    dispatch(deleteTalentsAction(id));
   };
 
   const [show, setShow] = useState(false);
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [tier, setTier] = useState('');
+  const [tier, setTier] = useState(0);
   const [lang, setLang] = useState('');
   const [activation, setActivation] = useState('');
   const [ranked, setRanked] = useState(false);
-  const [worlds, setWorlds] = useState([]);
+  const [worlds, setWorlds] = useState('');
 
   const addTalent = () => {
     const note = {
@@ -38,6 +40,30 @@ const Talents = () => {
       worlds,
     };
     dispatch(addTalentsAction(note));
+  };
+  const editTalent = () => {
+    const object = {
+      current: {
+        name: selected.name,
+        tier: selected.tier,
+        description: selected.description,
+        lang: selected.lang,
+        ranked: selected.ranked,
+        activation: selected.activation,
+        worlds: selected.worlds,
+      },
+      new: {
+        name,
+        description,
+        lang,
+        tier,
+        ranked,
+        activation,
+        worlds,
+      },
+    };
+    setSelected(object);
+    dispatch(updateTalentsAction(object));
   };
 
   return (
@@ -73,7 +99,16 @@ const Talents = () => {
                        tabIndex={0}
                        onKeyDown={() => {}}
                        style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
-                      //  onClick={() => (correctTalent(el))}
+                       onClick={() => {
+                         setShowEdit(!showEdit);
+                         setName(selected.name);
+                         setTier(selected.tier);
+                         setDescription(selected.description);
+                         setLang(selected.lang);
+                         setRanked(selected.ranked);
+                         setActivation(selected.activation);
+                         setWorlds(selected.worlds);
+                       }}
                      >
                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" className="svg-inline--fa fa-pen fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z" /></svg>
                      </div>
@@ -113,11 +148,12 @@ const Talents = () => {
           </div>
           <div className={styles.infoItem}>
             <span>Worlds: </span>
-            {selected.worlds.map((world) => (
+            {/* {selected.worlds.map((world) => (
               <div>
                 {`${world}, `}
               </div>
-            ))}
+            ))} */}
+            {selected.worlds}
           </div>
           <span>Description: </span>
           {selected.description}
@@ -129,10 +165,10 @@ const Talents = () => {
             setShow(!show);
             setName('');
             setDescription('');
-            setTier('');
+            setTier(0);
             setLang('');
             setRanked(false);
-            setWorlds([]);
+            setWorlds('');
             setActivation('');
           }}
         >
@@ -146,7 +182,7 @@ const Talents = () => {
                 </div>
                 <div className={styles.inputs}>
                   <span>tier:</span>
-                  <Input type="text" value={tier} onChange={setTier} />
+                  <Input type="number" value={tier} onChange={setTier} />
                 </div>
                 <div className={styles.inputs}>
                   <span>ranked:</span>
@@ -192,6 +228,81 @@ const Talents = () => {
               />),
           }}
         </Modal>
+        )}
+        {showEdit && (
+          <Modal
+            showAdd={showEdit}
+            closeModal={() => {
+              setShowEdit(!showEdit);
+              setName('');
+              setDescription('');
+              setTier(0);
+              setLang('');
+              setRanked(false);
+              setWorlds('');
+              setActivation('');
+            }}
+          >
+            {{
+              title: 'Add new talent form',
+              modalBody: (
+                <div className={styles.modalBody}>
+                  <div className={styles.inputs}>
+                    <span>name:</span>
+                    <Input type="text" value={name} onChange={setName} />
+                  </div>
+                  <div className={styles.inputs}>
+                    <span>tier:</span>
+                    <Input type="number" value={tier} onChange={setTier} />
+                  </div>
+                  <div className={styles.inputs}>
+                    <span>ranked:</span>
+                    <Select
+                      options={[true, false]}
+                      setValue={setRanked}
+                      value={ranked}
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <span>worlds:</span>
+                    <Input
+                      type="text"
+                      value={selected.worlds}
+                      onChange={setWorlds}
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <span>activation:</span>
+                    <Input type="text" value={activation} onChange={setActivation} />
+                  </div>
+                  <div className={styles.inputs}>
+                    <span>description:</span>
+                    <textarea
+                      value={description}
+                      className={styles.descriptionWindow}
+                      onChange={
+                        (e) => { setDescription(e.target.value); }
+                        }
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <span>lang:</span>
+                    <Select
+                      options={['eng', 'ru']}
+                      setValue={setLang}
+                      value={lang}
+                    />
+                  </div>
+                </div>
+              ),
+              footer: (
+                <Button
+                  className={styles.buttonSubmit}
+                  onClick={() => { editTalent(name); setShowEdit(!showEdit); }}
+                  caption="Edit"
+                />),
+            }}
+          </Modal>
         )}
       </div>
     </div>
