@@ -11,12 +11,17 @@ const sourcesSlice = createSlice({
       state.data = [...state.data, action.payload];
     },
     deleteSourceAction(state, action) {
-      state.data = state.data.filter(
-        (source) => source.name !== action.payload.name,
+      state.data = [
+        ...state.data.filter((item) => item.id !== action.payload)];
+    },
+    updateSourceAction(state, action) {
+      const index = state.data.findIndex(
+        (source) => source.name === action.payload.current.name,
       );
+      state.data[index] = action.payload.new;
     },
   },
 });
 
 export default sourcesSlice.reducer;
-export const { addSourceAction, deleteSourceAction } = sourcesSlice.actions;
+export const { addSourceAction, deleteSourceAction, updateSourceAction } = sourcesSlice.actions;

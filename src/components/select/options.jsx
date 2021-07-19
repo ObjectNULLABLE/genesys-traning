@@ -18,7 +18,9 @@ const Options = ({
     }}
     className={styles.option}
   >
-    {option.toString()}
+    {
+      option.toString()
+}
   </div>
 )));
 
