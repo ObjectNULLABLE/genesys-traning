@@ -11,9 +11,11 @@ const Skills = () => {
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(skills[0]);
   const dispatch = useDispatch();
+
   const deleteSkill = (source) => {
     dispatch(deleteSkillsAction(source));
   };
+
   return (
     <div className={style.featureBody}>
       <Menu>

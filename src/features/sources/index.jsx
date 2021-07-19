@@ -67,7 +67,7 @@ const Sources = () => {
               <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
             </div>),
           content: (
-            <div className={style.sources}>
+            <div className={style.elements}>
               {
                sources.filter((item) => (
                  item.name.toLowerCase().includes(filterValue.toLowerCase())
