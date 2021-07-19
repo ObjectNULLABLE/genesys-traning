@@ -14,7 +14,7 @@ const Sources = () => {
   const sources = useSelector((state) => state.sources.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(sources[0]);
-  const [show, setShow] = useState(false);
+  const [showAdd, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
   const dispatch = useDispatch();
@@ -89,7 +89,6 @@ const Sources = () => {
                        role="button"
                        tabIndex={0}
                        onKeyDown={() => {}}
-                       className={style.buttonDelete}
                        style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
                        onClick={() => {
                          setShowEdit(!showEdit);
@@ -105,7 +104,6 @@ const Sources = () => {
                        role="button"
                        tabIndex={0}
                        onKeyDown={() => {}}
-                       className={style.buttonDelete}
                        style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
                        onClick={() => {
                          deleteSource(el.id);
@@ -118,7 +116,7 @@ const Sources = () => {
                ))
               }
             </div>),
-          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setShow(!show); setName(''); setDescription(''); setShortName(''); }} />,
+          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setShow(!showAdd); setName(''); setDescription(''); setShortName(''); }} />,
         }}
       </Menu>
       <div className={style.features}>
@@ -130,10 +128,10 @@ const Sources = () => {
           <span>Description: </span>
           {selected.description}
         </div>
-        {show && (
+        {showAdd && (
           <Modal
-            show={show}
-            closeModal={() => { setShow(!show); setName(''); setDescription(''); setShortName(''); }}
+            showAdd={showAdd}
+            closeModal={() => { setShow(!showAdd); setName(''); setDescription(''); setShortName(''); }}
           >
             {{
               title: 'Add new source form',
@@ -171,7 +169,7 @@ const Sources = () => {
               footer: (
                 <Button
                   className={style.buttonSubmit}
-                  onClick={() => { addSource(); setShow(!show); }}
+                  onClick={() => { addSource(); setShow(!showAdd); }}
                   caption="Add new"
                 />),
             }}
@@ -179,7 +177,7 @@ const Sources = () => {
         )}
         {showEdit && (
           <Modal
-            show={showEdit}
+            showAdd={showEdit}
             closeModal={() => { setShowEdit(!showEdit); setName(''); setDescription(''); setShortName(''); setLang(''); }}
           >
             {{
@@ -218,7 +216,7 @@ const Sources = () => {
                 <Button
                   className={style.buttonSubmit}
                   onClick={() => { editSource(name); setShowEdit(!showEdit); }}
-                  caption="Edit show"
+                  caption="Edit"
                 />),
             }}
           </Modal>
