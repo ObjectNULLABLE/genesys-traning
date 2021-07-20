@@ -42,7 +42,7 @@ const Talents = () => {
     dispatch(addTalentsAction(note));
   };
   const editTalent = () => {
-    const object = {
+    const talent = {
       current: {
         name: selected.name,
         tier: selected.tier,
@@ -62,8 +62,8 @@ const Talents = () => {
         worlds,
       },
     };
-    setSelected(object);
-    dispatch(updateTalentsAction(object));
+    setSelected(talent.new);
+    dispatch(updateTalentsAction(talent));
   };
 
   return (

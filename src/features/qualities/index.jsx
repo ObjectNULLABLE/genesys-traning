@@ -34,7 +34,7 @@ const Qualities = () => {
   };
 
   const editQuality = () => {
-    const object = {
+    const quality = {
       current: {
         name: selected.name,
         active: selected.active,
@@ -48,8 +48,8 @@ const Qualities = () => {
         lang,
       },
     };
-    setSelected(object.new);
-    dispatch(updateQualitiesAction(object));
+    setSelected(quality.new);
+    dispatch(updateQualitiesAction(quality));
   };
 
   const deleteQuality = (quality) => {

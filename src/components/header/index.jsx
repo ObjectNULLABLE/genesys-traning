@@ -6,8 +6,8 @@ import Input from '../Input';
 import Button from '../button';
 
 function Header() {
-  const onRegister = (password, confirmPassword) => {
-    alert(password === confirmPassword ? 'Пароли совпадают' : 'Пароли не совпадают');
+  const onRegister = () => {
+
   };
 
   const [showLogin, setShowLogin] = useState(false);
@@ -30,8 +30,30 @@ function Header() {
             <Link className={styles.navLink} to="/sources">Sources</Link>
           </div>
           <div className={styles.accountPlace}>
-            <div className={`${styles.navLink} ${styles.account}`} role="button" onKeyDown={() => {}} tabIndex={0} onClick={() => { setShowRegister(false); setShowLogin(!showLogin); }}>Sign In</div>
-            <div className={`${styles.navLink} ${styles.account}`} role="button" onKeyDown={() => {}} tabIndex={0} onClick={() => { setShowLogin(false); setShowRegister(!showRegister); }}>Sign Up</div>
+            <div
+              className={`${styles.navLink} ${styles.account}`}
+              role="button"
+              onKeyDown={() => {}}
+              tabIndex={0}
+              onClick={() => {
+                setShowRegister(false);
+                setShowLogin(!showLogin);
+              }}
+            >
+              Sign In
+            </div>
+            <div
+              className={`${styles.navLink} ${styles.account}`}
+              role="button"
+              onKeyDown={() => {}}
+              tabIndex={0}
+              onClick={() => {
+                setShowLogin(false);
+                setShowRegister(!showRegister);
+              }}
+            >
+              Sign Up
+            </div>
           </div>
         </nav>
       </header>
@@ -39,24 +61,40 @@ function Header() {
         {showLogin && (
         <Modal
           show={showLogin}
-          closeModal={() => { setShowLogin(!showLogin); setEmail(''); setPassword(''); }}
+          closeModal={() => {
+            setShowLogin(!showLogin);
+            setEmail('');
+            setPassword('');
+          }}
         >
           {{
             title: 'Sign in',
             modalBody: (
               <div className={styles.modalBody}>
                 <div className={styles.inputs}>
-                  <Input placeholder="email" type="text" value={email} onChange={setEmail} />
+                  <Input
+                    placeholder="email"
+                    type="text"
+                    value={email}
+                    onChange={setEmail}
+                  />
                 </div>
                 <div className={styles.inputs}>
-                  <Input placeholder="password" type="password" value={password} onChange={setPassword} />
+                  <Input
+                    placeholder="password"
+                    type="password"
+                    value={password}
+                    onChange={setPassword}
+                  />
                 </div>
               </div>
             ),
             footer: (
               <Button
                 className={styles.buttonSubmit}
-                onClick={() => { setShowLogin(!showLogin); }}
+                onClick={() => {
+                  setShowLogin(!showLogin);
+                }}
                 caption="sign in"
               />),
           }}
@@ -65,30 +103,54 @@ function Header() {
         {showRegister && (
         <Modal
           show={showRegister}
-          closeModal={() => { setShowRegister(!showRegister); }}
+          closeModal={() => {
+            setShowRegister(!showRegister);
+          }}
         >
           {{
             title: 'Sign Up',
             modalBody: (
               <div className={styles.modalBody}>
                 <div className={styles.inputs}>
-                  <Input placeholder="name" type="text" value={name} onChange={setName} />
+                  <Input
+                    placeholder="name"
+                    type="text"
+                    value={name}
+                    onChange={setName}
+                  />
                 </div>
                 <div className={styles.inputs}>
-                  <Input placeholder="email" type="text" value={email} onChange={setEmail} />
+                  <Input
+                    placeholder="email"
+                    type="text"
+                    value={email}
+                    onChange={setEmail}
+                  />
                 </div>
                 <div className={styles.inputs}>
-                  <Input placeholder="password" type="password" value={password} onChange={setPassword} />
+                  <Input
+                    placeholder="password"
+                    type="password"
+                    value={password}
+                    onChange={setPassword}
+                  />
                 </div>
                 <div className={styles.inputs}>
-                  <Input placeholder="confirm password" type="password" value={confirmPassword} onChange={setConfirmPassword} />
+                  <Input
+                    placeholder="confirm password"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={setConfirmPassword}
+                  />
                 </div>
               </div>
             ),
             footer: (
               <Button
                 className={styles.buttonSubmit}
-                onClick={() => { onRegister(); }}
+                onClick={() => {
+                  onRegister();
+                }}
                 caption="Create Account"
               />),
           }}

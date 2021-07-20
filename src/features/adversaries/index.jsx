@@ -13,11 +13,11 @@ const Adversaries = () => {
     derivedAttributes: { type: [], of: 0 },
     skills: [],
     talents: [],
-    abilityIDs: [''],
-    equipmentIDs: [''],
-    worlds: [''],
-    sourceID: { type: {}, ref: '' },
-    tags: [''],
+    abilityIDs: [],
+    equipmentIDs: [],
+    worlds: [],
+    sourceID: '',
+    tags: [],
     lang: '',
   }];
   return (
@@ -34,7 +34,11 @@ const Adversaries = () => {
               {
               }
             </div>),
-          footer: <Button caption="Add new Adversary" className={style.addButton} onClick={() => {}} />,
+          footer: <Button
+            caption="Add new Adversary"
+            className={style.addButton}
+            onClick={() => {}}
+          />,
         }}
       </Menu>
 

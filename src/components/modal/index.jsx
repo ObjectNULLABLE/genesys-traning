@@ -25,7 +25,6 @@ const Modal = ({
       {children.footer}
     </div>
   </div>
-
 );
 
 Modal.propTypes = {

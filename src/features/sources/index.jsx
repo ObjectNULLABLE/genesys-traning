@@ -35,7 +35,7 @@ const Sources = () => {
   };
 
   const editSource = () => {
-    const object = {
+    const source = {
       current: {
         name: selected.name,
         shortName: selected.shortName,
@@ -49,8 +49,8 @@ const Sources = () => {
         lang,
       },
     };
-    setSelected(object);
-    dispatch(updateSourceAction(object));
+    setSelected(source.new);
+    dispatch(updateSourceAction(source));
   };
 
   const deleteSource = (id) => {
