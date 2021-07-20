@@ -71,6 +71,8 @@
     }
     .modalBody{ 
     width:100%;
+    overflow: auto;
+    height:25rem;
     span{
         color:white;
     }
