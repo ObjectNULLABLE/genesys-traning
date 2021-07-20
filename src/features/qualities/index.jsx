@@ -62,7 +62,12 @@ const Qualities = () => {
           header: (
             <div>
               <div className={style.header}>Qualities</div>
-              <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
+              <Input
+                className={style.search}
+                value={filterValue}
+                onChange={setFilterValue}
+                type="text"
+              />
             </div>),
           content: (
             <div className={style.elements}>
@@ -114,7 +119,16 @@ const Qualities = () => {
                ))
               }
             </div>),
-          footer: <Button caption="Add new Quality" className={style.addButton} onClick={() => { setShow(!showAdd); setName(''); setDescription(''); setActive(''); }} />,
+          footer: <Button
+            caption="Add new Quality"
+            className={style.addButton}
+            onClick={() => {
+              setShow(!showAdd);
+              setName('');
+              setDescription('');
+              setActive('');
+            }}
+          />,
         }}
       </Menu>
       <div className={style.features}>
@@ -132,7 +146,13 @@ const Qualities = () => {
         {showAdd && (
         <Modal
           show={showAdd}
-          closeModal={() => { setShow(!showAdd); setName(''); setDescription(''); setActive(''); setLang(''); }}
+          closeModal={() => {
+            setShow(!showAdd);
+            setName('');
+            setDescription('');
+            setActive('');
+            setLang('');
+          }}
         >
           {{
             title: 'Add new source form',
@@ -173,7 +193,10 @@ const Qualities = () => {
             footer: (
               <Button
                 className={style.buttonSubmit}
-                onClick={() => { addQuality(); setShow(!showAdd); }}
+                onClick={() => {
+                  addQuality();
+                  setShow(!showAdd);
+                }}
                 caption="Add new"
               />),
           }}
@@ -182,7 +205,13 @@ const Qualities = () => {
         {showEdit && (
           <Modal
             showAdd={showEdit}
-            closeModal={() => { setShowEdit(!showEdit); setName(''); setDescription(''); setActive(''); setLang(''); }}
+            closeModal={() => {
+              setShowEdit(!showEdit);
+              setName('');
+              setDescription('');
+              setActive('');
+              setLang('');
+            }}
           >
             {{
               title: 'Add new source form',
@@ -223,7 +252,10 @@ const Qualities = () => {
               footer: (
                 <Button
                   className={style.buttonSubmit}
-                  onClick={() => { editQuality(name); setShowEdit(!showEdit); }}
+                  onClick={() => {
+                    editQuality(name);
+                    setShowEdit(!showEdit);
+                  }}
                   caption="Edit"
                 />),
             }}
