@@ -11,9 +11,8 @@ const qualitiesSlice = createSlice({
       state.data = [...state.data, action.payload];
     },
     deleteQualitiesAction(state, action) {
-      state.sources.data = state.sources.filter(
-        (quality) => quality.name !== action.payload.name,
-      );
+      state.data = [
+        ...state.data.filter((item) => item.id !== action.payload)];
     },
     updateQualitiesAction(state, action) {
       const index = state.data.findIndex(
