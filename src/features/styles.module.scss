@@ -69,22 +69,31 @@
             } 
         }   
     }
+
+    .modal{
+        height:100%;
+    }
     .modalBody{ 
     width:100%;
     overflow: auto;
-    height:25rem;
+    height:100%;
     span{
         color:white;
     }
     .inputs{
-        padding:0rem 1rem 0rem 1rem;
+        display: flex;
         text-align: center;
         justify-content: center;
+        flex-direction: column;
         background-color:rgb(129, 45, 45);
+        input{
+            width:100%;
+            margin:0px;
+            padding:0px;
+        }
         .descriptionWindow{
-            min-width: 100%;
-            width: 100%;
-            max-width: 100%;
+            margin:0px;
+            padding:0px;
         }
     }
     }

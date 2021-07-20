@@ -3,55 +3,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from '../styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
-import { deleteSourceAction, addSourceAction, updateSourceAction } from './sourcesSlice';
+import { deleteSourceAction } from './sourcesSlice';
 import Button from '../../components/button';
 import Modal from '../../components/modal';
-import Select from '../../components/select';
-
-const languages = ['eng', 'ru'];
+import AddSourceBody from './addSourceBody';
+import EditSourceBody from './editSourceBody';
 
 const Sources = () => {
   const sources = useSelector((state) => state.sources.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(sources[0]);
-  const [showAdd, setShow] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
+  const [show, setShow] = useState(false);
+  const [Id, setId] = useState('');
 
   const dispatch = useDispatch();
+  const [type, setType] = useState('');
 
-  const [name, setName] = useState('');
-  const [shortName, setShortName] = useState('');
-  const [description, setDescription] = useState('');
-  const [lang, setLang] = useState('');
-
-  const addSource = () => {
-    const note = {
-      name,
-      shortName,
-      description,
-      lang,
-    };
-    dispatch(addSourceAction(note));
-  };
-
-  const editSource = () => {
-    const source = {
-      current: {
-        name: selected.name,
-        shortName: selected.shortName,
-        description: selected.description,
-        lang: selected.lang,
-      },
-      new: {
-        name,
-        shortName,
-        description,
-        lang,
-      },
-    };
-    setSelected(source.new);
-    dispatch(updateSourceAction(source));
-  };
+  const [Source] = useState({
+    name: '',
+    shortName: '',
+    description: '',
+    lang: '',
+  });
 
   const deleteSource = (id) => {
     dispatch(deleteSourceAction(id));
@@ -91,11 +64,9 @@ const Sources = () => {
                        onKeyDown={() => {}}
                        style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
                        onClick={() => {
-                         setShowEdit(!showEdit);
-                         setName(selected.name);
-                         setShortName(selected.shortName);
-                         setDescription(selected.description);
-                         setLang(selected.lang);
+                         setType('edit');
+                         setId(el.id);
+                         setShow(!show);
                        }}
                      >
                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" className="svg-inline--fa fa-pen fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z" /></svg>
@@ -116,7 +87,14 @@ const Sources = () => {
                ))
               }
             </div>),
-          footer: <Button caption="Add new Source" className={style.addButton} onClick={() => { setShow(!showAdd); setName(''); setDescription(''); setShortName(''); }} />,
+          footer: <Button
+            caption="Add new Source"
+            className={style.addButton}
+            onClick={() => {
+              setType('add');
+              setShow(!show);
+            }}
+          />,
         }}
       </Menu>
       <div className={style.features}>
@@ -128,97 +106,34 @@ const Sources = () => {
           <span>Description: </span>
           {selected.description}
         </div>
-        {showAdd && (
+        {show && (
           <Modal
-            showAdd={showAdd}
-            closeModal={() => { setShow(!showAdd); setName(''); setDescription(''); setShortName(''); }}
-          >
-            {{
-              title: 'Add new source form',
-              modalBody: (
-                <div className={style.modalBody}>
-                  <div className={style.inputs}>
-                    <span>Name:</span>
-                    <Input type="text" value={name} onChange={setName} placeholder="Input name" />
-                  </div>
-                  <div className={style.inputs}>
-                    <span>Shortname:</span>
-                    <Input type="text" value={shortName} onChange={setShortName} placeholder="Input shortname" />
-                  </div>
-
-                  <div className={style.inputs}>
-                    <span>Description:</span>
-                    <textarea
-                      placeholder="Input description"
-                      value={description}
-                      className={style.descriptionWindow}
-                      onChange={
-                    (e) => { setDescription(e.target.value); }
-}
-                    />
-                  </div>
-                  <div className={style.inputs}>
-                    <span>Language:</span>
-                    <Select
-                      value=""
-                      options={languages}
-                      setValue={setLang}
-                    />
-                  </div>
-                </div>
-              ),
-              footer: (
-                <Button
-                  className={style.buttonSubmit}
-                  onClick={() => { addSource(); setShow(!showAdd); }}
-                  caption="Add new"
-                />),
+            show={show}
+            closeModal={() => {
+              setShow(!show);
             }}
-          </Modal>
-        )}
-        {showEdit && (
-          <Modal
-            showAdd={showEdit}
-            closeModal={() => { setShowEdit(!showEdit); setName(''); setDescription(''); setShortName(''); setLang(''); }}
           >
             {{
               title: 'Add new source form',
               modalBody: (
-                <div className={style.modalBody}>
-                  <div className={style.inputs}>
-                    <span>name:</span>
-                    <Input type="text" value={name} onChange={setName} />
-                  </div>
-                  <div className={style.inputs}>
-                    <span>shortname:</span>
-                    <Input type="text" value={shortName} onChange={setShortName} />
-                  </div>
-                  <div className={style.inputs}>
-                    <span>description:</span>
-                    <textarea
-                      value={description}
-                      className={style.descriptionWindow}
-                      onChange={
-                    (e) => { setDescription(e.target.value); }
-}
-                    />
-                  </div>
-                  <div className={style.inputs}>
-                    <span>lang:</span>
-                    <Select
-                      options={languages}
-                      setValue={setLang}
-                      value={lang}
-                    />
-                  </div>
-                </div>
+                type === 'add' ? (
+                  <AddSourceBody
+                    source={Source}
+                    setShow={setShow}
+                    show={show}
+                  />
+                ) : (
+                  type === 'edit' && (
+                  <EditSourceBody
+                    Id={Id}
+                    setShow={setShow}
+                    show={show}
+                    selected={selected}
+                    setSelected={setSelected}
+                  />
+                  )
+                )
               ),
-              footer: (
-                <Button
-                  className={style.buttonSubmit}
-                  onClick={() => { editSource(name); setShowEdit(!showEdit); }}
-                  caption="Edit"
-                />),
             }}
           </Modal>
         )}

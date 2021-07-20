@@ -16,9 +16,9 @@ const sourcesSlice = createSlice({
     },
     updateSourceAction(state, action) {
       const index = state.data.findIndex(
-        (source) => source.name === action.payload.current.name,
+        (source) => source.id === action.payload.Id,
       );
-      state.data[index] = action.payload.new;
+      state.data[index] = action.payload;
     },
   },
 });
