@@ -96,9 +96,9 @@ const Sources = () => {
           footer: <Button
             caption="Add new Source"
             className={style.addButton}
-            onClick={async () => {
-              await setType('add');
-              await setShow(!show);
+            onClick={() => {
+              setType('add');
+              setShow(!show);
             }}
           />,
         }}
