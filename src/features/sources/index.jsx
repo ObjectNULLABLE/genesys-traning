@@ -37,7 +37,13 @@ const Sources = () => {
           header: (
             <div>
               <div className={style.header}>Source</div>
-              <Input className={style.search} value={filterValue} onChange={setFilterValue} type="text" />
+              <Input
+                className={style.search}
+                value={filterValue}
+                onChange={setFilterValue}
+                type="text"
+                placeholder="Search..."
+              />
             </div>),
           content: (
             <div className={style.elements}>
@@ -90,9 +96,9 @@ const Sources = () => {
           footer: <Button
             caption="Add new Source"
             className={style.addButton}
-            onClick={() => {
-              setType('add');
-              setShow(!show);
+            onClick={async () => {
+              await setType('add');
+              await setShow(!show);
             }}
           />,
         }}
@@ -114,7 +120,7 @@ const Sources = () => {
             }}
           >
             {{
-              title: 'Add new source form',
+              title: type === 'add' ? 'Add new source' : 'Edit source',
               modalBody: (
                 type === 'add' ? (
                   <AddSourceBody

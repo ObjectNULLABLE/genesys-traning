@@ -26,25 +26,25 @@ const AddSourceBody = ({
   return (
     <div className={style.modalBody}>
       <div className={style.inputs}>
+        <span>Name:</span>
         <Input
           type="text"
           value={name}
           onChange={setName}
-          placeholder="name"
         />
       </div>
       <div className={style.inputs}>
+        <span>Shortname:</span>
         <Input
           type="text"
           value={shortName}
           onChange={setShortName}
-          placeholder="shortname"
         />
       </div>
       <div className={style.inputs}>
+        <span>Description:</span>
         <textarea
           value={description}
-          placeholder="description"
           className={style.descriptionWindow}
           onChange={(e) => {
             setDescription(e.target.value);
@@ -52,6 +52,7 @@ const AddSourceBody = ({
         />
       </div>
       <div className={style.inputs}>
+        <span>Language:</span>
         <Select
           options={languages}
           setValue={setLang}

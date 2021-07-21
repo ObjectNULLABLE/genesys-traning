@@ -19,15 +19,15 @@ const AddSourceBody = ({
   const [lang, setLang] = useState(selected.lang);
 
   const editSource = () => {
-    const newSource = {
+    const updatedSource = {
       Id,
       name,
       shortName,
       description,
       lang,
     };
-    setSelected(newSource);
-    dispatch(updateSourceAction(newSource));
+    setSelected(updatedSource);
+    dispatch(updateSourceAction(updatedSource));
   };
 
   return (
