@@ -5,29 +5,30 @@ import Input from '../../components/Input';
 import style from '../styles.module.scss';
 import Select from '../../components/select';
 import Button from '../../components/button';
-import { updateSourceAction } from './sourcesSlice';
+import { updateQualityAction } from './qualitiesSlice';
 
 const languages = ['eng', 'ru'];
+const actives = [true, false];
 
-const AddSourceBody = ({
-  show, setShow, Id, selected, setSelected,
+const EditQualityBody = ({
+  show, setShow, id, selected, setSelected,
 }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState(selected.name);
-  const [shortName, setShortName] = useState(selected.shortName);
+  const [active, setActive] = useState(selected.active);
   const [description, setDescription] = useState(selected.description);
   const [lang, setLang] = useState(selected.lang);
 
   const editSource = () => {
-    const updatedSource = {
-      Id,
+    const updatedQuality = {
+      id,
       name,
-      shortName,
+      active,
       description,
       lang,
     };
-    setSelected(updatedSource);
-    dispatch(updateSourceAction(updatedSource));
+    setSelected(updatedQuality);
+    dispatch(updateQualityAction(updatedQuality));
   };
 
   return (
@@ -42,12 +43,11 @@ const AddSourceBody = ({
         />
       </div>
       <div className={style.inputs}>
-        <span>Shortname:</span>
-        <Input
-          type="text"
-          value={shortName}
-          onChange={setShortName}
-          placeholder="Input shortname"
+        <span>Active:</span>
+        <Select
+          value={active}
+          options={actives}
+          setValue={setActive}
         />
       </div>
 
@@ -82,21 +82,21 @@ const AddSourceBody = ({
   );
 };
 
-AddSourceBody.propTypes = {
+EditQualityBody.propTypes = {
   selected: PropTypes.objectOf({
     name: PropTypes.string,
-    shortName: PropTypes.string,
+    active: PropTypes.bool,
     description: PropTypes.string,
     lang: PropTypes.string,
   }).isRequired,
   setSelected: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
   setShow: PropTypes.func,
-  Id: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
-AddSourceBody.defaultProps = {
+EditQualityBody.defaultProps = {
   setShow: () => {},
 };
 
-export default AddSourceBody;
+export default EditQualityBody;
