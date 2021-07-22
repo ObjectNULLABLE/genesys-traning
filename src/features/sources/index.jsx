@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './style.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
-import { deleteSourceAction, addSourceAction } from './sourcesSlice';
+import { deleteSourceAction, addSourceAction, addSourceDB } from './sourcesSlice';
 import Button from '../../components/button';
 import Modal from '../../components/modal';
 import Select from '../../components/select';
@@ -28,6 +28,7 @@ const Sources = () => {
       lang,
     };
     dispatch(addSourceAction(note));
+    dispatch(addSourceDB(note));
   };
 
   const deleteSource = (source) => {
@@ -101,7 +102,13 @@ const Sources = () => {
             name, shortName, description, lang,
           }}
           show={show}
-          closeModal={() => { setShow(!show); setName(''); setDescription(''); setShortName(''); setLang(''); }}
+          closeModal={() => {
+            setShow(!show);
+            setName('');
+            setDescription('');
+            setShortName('');
+            setLang('');
+          }}
         >
           {{
             title: 'Add new source form',
@@ -137,7 +144,15 @@ const Sources = () => {
             footer: (
               <Button
                 className={style.buttonSubmit}
-                onClick={() => { addSource(); setShow(!show); }}
+                onClick={() => {
+                  dispatch(addSource({
+                    name,
+                    shortName,
+                    description,
+                    lang,
+                  }));
+                  setShow(!show);
+                }}
                 caption="Add new"
               />),
           }}
