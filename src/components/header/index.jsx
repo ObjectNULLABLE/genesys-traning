@@ -6,7 +6,6 @@ import styles from './styles.module.scss';
 import Modal from '../modal';
 import Input from '../Input';
 import Button from '../button';
-import Registration from '../../features/signUp/user';
 import { signIn } from '../../features/signIn/userSlice';
 
 function Header() {
@@ -152,7 +151,6 @@ function Header() {
                 <Button
                   className={styles.buttonSubmit}
                   onClick={() => {
-                    Registration(username, email, password, confirmPassword);
                   }}
                   caption="Create Account"
                 />
