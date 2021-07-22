@@ -54,34 +54,3 @@
     }
     }
 }
-
-.modalPlace{
-    position: absolute;
-    margin-top:10rem;
-    width:100%;
-    display: flex;
-    justify-content: center;
-}
-
-.modalBody{
-    width:100%;
-    span{
-        color:white;
-    }
-    .inputs{
-        text-align: center;
-        justify-content: center;
-        background-color:rgb(129, 45, 45);
-        .inputName{
-            font-size: 30px;
-        }
-        .descriptionWindow{
-            min-width: 100%;
-            width: 100%;
-            max-width: 100%;
-        }
-    }
-    }
-    .buttonSubmit{
-        width:100%;
-    }
