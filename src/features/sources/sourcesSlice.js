@@ -11,8 +11,9 @@ const sourcesSlice = createSlice({
       state.data = [...state.data, action.payload];
     },
     deleteSourceAction(state, action) {
-      state.data = [
-        ...state.data.filter((item) => item.id !== action.payload)];
+      state.data = state.data.filter(
+        (source) => source.name !== action.payload.name,
+      );
     },
     updateSourceAction(state, action) {
       const index = state.data.findIndex(
@@ -20,6 +21,9 @@ const sourcesSlice = createSlice({
       );
       state.data[index] = action.payload;
     },
+  },
+  extraReducers: {
+
   },
 });
 
