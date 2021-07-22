@@ -3,58 +3,32 @@ import { useSelector, useDispatch } from 'react-redux';
 import style from '../styles.module.scss';
 import Menu from '../../components/menu';
 import Input from '../../components/Input';
+import { deleteQualityAction } from './qualitiesSlice';
 import Button from '../../components/button';
-import { addQualitiesAction, deleteQualitiesAction, updateQualitiesAction } from './qualitiesSlice';
 import Modal from '../../components/modal';
-import Select from '../../components/select';
-
-const languages = ['eng', 'ru'];
+import AddQualityBody from './addQualityBody';
+import EditQualityBody from './editQualityBody';
 
 const Qualities = () => {
   const qualities = useSelector((state) => state.qualities.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(qualities[0]);
-  const [showAdd, setShow] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState('');
+
   const dispatch = useDispatch();
+  const [type, setType] = useState('');
 
-  const [name, setName] = useState('');
-  const [active, setActive] = useState('');
-  const [description, setDescription] = useState('');
-  const [lang, setLang] = useState('');
-
-  const addQuality = () => {
-    const note = {
-      name,
-      active,
-      description,
-      lang,
-    };
-    dispatch(addQualitiesAction(note));
+  const [Quality] = useState({
+    name: '',
+    active: '',
+    description: '',
+    lang: '',
+  });
+  const deleteQuality = (selectedId) => {
+    dispatch(deleteQualityAction(selectedId));
   };
 
-  const editQuality = () => {
-    const quality = {
-      current: {
-        name: selected.name,
-        active: selected.active,
-        description: selected.description,
-        lang: selected.lang,
-      },
-      new: {
-        name,
-        active,
-        description,
-        lang,
-      },
-    };
-    setSelected(quality.new);
-    dispatch(updateQualitiesAction(quality));
-  };
-
-  const deleteQuality = (quality) => {
-    dispatch(deleteQualitiesAction(quality));
-  };
   return (
     <div className={style.featureBody}>
       <Menu>
@@ -67,6 +41,8 @@ const Qualities = () => {
                 value={filterValue}
                 onChange={setFilterValue}
                 type="text"
+                placeholder="Search..."
+
               />
             </div>),
           content: (
@@ -94,11 +70,9 @@ const Qualities = () => {
                        onKeyDown={() => {}}
                        style={selected.name === el.name ? { display: 'block' } : { display: 'none' }}
                        onClick={() => {
-                         setShowEdit(!showEdit);
-                         setName(selected.name);
-                         setActive(selected.active);
-                         setDescription(selected.description);
-                         setLang(selected.lang);
+                         setType('edit');
+                         setId(el.id);
+                         setShow(!show);
                        }}
                      >
                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen" className="svg-inline--fa fa-pen fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z" /></svg>
@@ -123,10 +97,8 @@ const Qualities = () => {
             caption="Add new Quality"
             className={style.addButton}
             onClick={() => {
-              setShow(!showAdd);
-              setName('');
-              setDescription('');
-              setActive('');
+              setType('add');
+              setShow(!show);
             }}
           />,
         }}
@@ -143,126 +115,40 @@ const Qualities = () => {
           <span>Description: </span>
           {selected.description}
         </div>
-        {showAdd && (
+        {show && (
         <Modal
-          show={showAdd}
+          show={show}
           closeModal={() => {
-            setShow(!showAdd);
-            setName('');
-            setDescription('');
-            setActive('');
-            setLang('');
+            setShow(!show);
           }}
         >
           {{
-            title: 'Add new source form',
+            title: type === 'add' ? 'Add new quality' : 'Edit quality',
             modalBody: (
-              <div className={style.modalBody}>
-                <div className={style.inputs}>
-                  <span>name:</span>
-                  <Input type="text" value={name} onChange={setName} />
-                </div>
-                <div className={style.inputs}>
-                  <span>active:</span>
-                  <Select
-                    options={[true, false]}
-                    setValue={setActive}
-                    value={active}
+              type === 'add' ? (
+                <AddQualityBody
+                  quality={Quality}
+                  setShow={setShow}
+                  show={show}
+                />
+              ) : (
+                type === 'edit' && (
+                  <EditQualityBody
+                    id={id}
+                    setShow={setShow}
+                    show={show}
+                    selected={selected}
+                    setSelected={setSelected}
                   />
-                </div>
-                <div className={style.inputs}>
-                  <span>description:</span>
-                  <textarea
-                    value={description}
-                    className={style.descriptionWindow}
-                    onChange={
-                    (e) => { setDescription(e.target.value); }
-}
-                  />
-                </div>
-                <div className={style.inputs}>
-                  <span>lang:</span>
-                  <Select
-                    options={['eng', 'ru']}
-                    setValue={setLang}
-                    value={lang}
-                  />
-                </div>
-              </div>
+                )
+              )
             ),
-            footer: (
-              <Button
-                className={style.buttonSubmit}
-                onClick={() => {
-                  addQuality();
-                  setShow(!showAdd);
-                }}
-                caption="Add new"
-              />),
           }}
         </Modal>
-        )}
-        {showEdit && (
-          <Modal
-            showAdd={showEdit}
-            closeModal={() => {
-              setShowEdit(!showEdit);
-              setName('');
-              setDescription('');
-              setActive('');
-              setLang('');
-            }}
-          >
-            {{
-              title: 'Add new source form',
-              modalBody: (
-                <div className={style.modalBody}>
-                  <div className={style.inputs}>
-                    <span>name:</span>
-                    <Input type="text" value={name} onChange={setName} />
-                  </div>
-                  <div className={style.inputs}>
-                    <span>active:</span>
-                    <Select
-                      options={[true, false]}
-                      setValue={setActive}
-                      value={active}
-                    />
-                  </div>
-                  <div className={style.inputs}>
-                    <span>description:</span>
-                    <textarea
-                      value={description}
-                      className={style.descriptionWindow}
-                      onChange={
-                    (e) => { setDescription(e.target.value); }
-}
-                    />
-                  </div>
-                  <div className={style.inputs}>
-                    <span>lang:</span>
-                    <Select
-                      options={languages}
-                      setValue={setLang}
-                      value={lang}
-                    />
-                  </div>
-                </div>
-              ),
-              footer: (
-                <Button
-                  className={style.buttonSubmit}
-                  onClick={() => {
-                    editQuality(name);
-                    setShowEdit(!showEdit);
-                  }}
-                  caption="Edit"
-                />),
-            }}
-          </Modal>
         )}
       </div>
     </div>
   );
 };
+
 export default Qualities;

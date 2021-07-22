@@ -13,6 +13,8 @@ import Talents from '../talents';
 import Skills from '../skills';
 import Adversaries from '../adversaries';
 import Sources from '../sources';
+import SignIn from '../signIn';
+import SignUp from '../signUp';
 
 function App() {
   return (
@@ -38,6 +40,12 @@ function App() {
             </Route>
             <Route path="/sources">
               <Sources />
+            </Route>
+            <Route path="/signIn">
+              <SignIn />
+            </Route>
+            <Route path="/signUp">
+              <SignUp />
             </Route>
             <Route path="*">
               <Redirect to="/weapon" push />

@@ -1,0 +1,29 @@
+
+.modalPlace{
+    margin-top:10rem;
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+    .title{
+        background-color: rgb(41, 15, 15)  ;
+        width: 40%;
+        align-items: center;
+        color: white;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        font-size: 2rem;
+    }
+    .modalBody{
+        width:40%;
+    .inputs{
+        text-align: center;
+        justify-content: center;
+        background-color:rgb(129, 45, 45);
+    }
+}
+.buttonSubmit{
+    width:100%;
+}
+}

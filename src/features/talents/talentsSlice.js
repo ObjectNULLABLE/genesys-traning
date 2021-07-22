@@ -7,21 +7,21 @@ const talentsSlice = createSlice({
     data: talents,
   },
   reducers: {
-    addTalentsAction(state, action) {
+    addTalentAction(state, action) {
       state.data = [...state.data, action.payload];
     },
-    deleteTalentsAction(state, action) {
+    deleteTalentAction(state, action) {
       state.data = [
         ...state.data.filter((item) => item.id !== action.payload)];
     },
-    updateTalentsAction(state, action) {
+    updateTalentAction(state, action) {
       const index = state.data.findIndex(
-        (talent) => talent.name === action.payload.current.name,
+        (talent) => talent.id === action.payload.id,
       );
-      state.data[index] = action.payload.new;
+      state.data[index] = action.payload;
     },
   },
 });
 
 export default talentsSlice.reducer;
-export const { addTalentsAction, deleteTalentsAction, updateTalentsAction } = talentsSlice.actions;
+export const { addTalentAction, deleteTalentAction, updateTalentAction } = talentsSlice.actions;

@@ -3,3 +3,12 @@
     height: 1rem;
     width: 85%;
 }
+
+.passwordInput{
+    &:invalid{
+        background-color: red;
+    }
+    &:valid{
+        background-color: green;
+    }
+}
