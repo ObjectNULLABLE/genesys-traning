@@ -10,13 +10,12 @@ import AddSourceBody from './addSourceBody';
 import EditSourceBody from './editSourceBody';
 
 const Sources = () => {
+  const dispatch = useDispatch();
   const sources = useSelector((state) => state.sources.data);
   const [filterValue, setFilterValue] = useState('');
   const [selected, setSelected] = useState(sources[0]);
   const [show, setShow] = useState(false);
   const [Id, setId] = useState('');
-
-  const dispatch = useDispatch();
   const [type, setType] = useState('');
 
   const [Source] = useState({

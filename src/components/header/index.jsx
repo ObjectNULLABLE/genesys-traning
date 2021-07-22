@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styles from './styles.module.scss';
 import Modal from '../modal';
 import Input from '../Input';
 import Button from '../button';
+import signUp from '../../features/signup/signUp';
 
 function Header() {
-  const onRegister = () => {
-
-  };
-
+  const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
   return (
     <div>
       <header className={styles.header}>
@@ -87,16 +85,15 @@ function Header() {
                     onChange={setPassword}
                   />
                 </div>
+                <Button
+                  className={styles.buttonSubmit}
+                  onClick={() => {
+                    setShowLogin(!showLogin);
+                  }}
+                  caption="sign in"
+                />
               </div>
             ),
-            footer: (
-              <Button
-                className={styles.buttonSubmit}
-                onClick={() => {
-                  setShowLogin(!showLogin);
-                }}
-                caption="sign in"
-              />),
           }}
         </Modal>
         )}
@@ -110,49 +107,59 @@ function Header() {
           {{
             title: 'Sign Up',
             modalBody: (
-              <div className={styles.modalBody}>
-                <div className={styles.inputs}>
-                  <Input
-                    placeholder="name"
-                    type="text"
-                    value={name}
-                    onChange={setName}
+              <form>
+                <div className={styles.modalBody}>
+                  <div className={styles.inputs}>
+                    <Input
+                      placeholder="name"
+                      type="text"
+                      value={username}
+                      onChange={setUsername}
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <Input
+                      className={styles.input}
+                      placeholder="email"
+                      type="email"
+                      value={email}
+                      onChange={setEmail}
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <Input
+                      className={styles.passwordInput}
+                      placeholder="password"
+                      minLength={6}
+                      type="password"
+                      value={password}
+                      onChange={setPassword}
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <Input
+                      className={styles.passwordInput}
+                      minLength={6}
+                      placeholder="confirm password"
+                      type="password"
+                      value={confirmPassword}
+                      onChange={setConfirmPassword}
+                    />
+                  </div>
+                  <Button
+                    className={styles.buttonSubmit}
+                    onClick={() => {
+                      dispatch(signUp({
+                        username,
+                        email,
+                        password,
+                      }));
+                    }}
+                    caption="Sign Up"
                   />
                 </div>
-                <div className={styles.inputs}>
-                  <Input
-                    placeholder="email"
-                    type="text"
-                    value={email}
-                    onChange={setEmail}
-                  />
-                </div>
-                <div className={styles.inputs}>
-                  <Input
-                    placeholder="password"
-                    type="password"
-                    value={password}
-                    onChange={setPassword}
-                  />
-                </div>
-                <div className={styles.inputs}>
-                  <Input
-                    placeholder="confirm password"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={setConfirmPassword}
-                  />
-                </div>
-              </div>
+              </form>
             ),
-            footer: (
-              <Button
-                className={styles.buttonSubmit}
-                onClick={() => {
-                  onRegister();
-                }}
-                caption="Create Account"
-              />),
           }}
         </Modal>
         )}
@@ -160,4 +167,5 @@ function Header() {
     </div>
   );
 }
+
 export default Header;
