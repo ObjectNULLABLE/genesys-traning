@@ -110,22 +110,12 @@ const EditSkillBody = ({
         <Button
           className={style.buttonSubmit}
           onClick={() => {
-            editSkill({
-              name,
-              characteristic,
-              worlds,
-              type,
-              description,
-              useIf,
-              notUseIf,
-              lang,
-            });
+            editSkill();
             setShow(!show);
           }}
-          caption="Add new"
+          caption="Edit"
         />
       </div>
-
     </div>
   );
 };

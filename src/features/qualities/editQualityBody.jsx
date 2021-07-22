@@ -70,14 +70,16 @@ const EditQualityBody = ({
           setValue={setLang}
         />
       </div>
-      <Button
-        className={style.buttonSubmit}
-        onClick={() => {
-          editSource();
-          setShow(!show);
-        }}
-        caption="Edit"
-      />
+      <div className={style.inputs}>
+        <Button
+          className={style.buttonSubmit}
+          onClick={() => {
+            editSource();
+            setShow(!show);
+          }}
+          caption="Edit"
+        />
+      </div>
     </div>
   );
 };

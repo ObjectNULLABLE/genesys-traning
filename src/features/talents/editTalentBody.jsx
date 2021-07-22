@@ -105,14 +105,16 @@ const EditTalentBody = ({
           }}
         />
       </div>
-      <Button
-        className={style.buttonSubmit}
-        onClick={() => {
-          editTalent();
-          setShow(!show);
-        }}
-        caption="Edit"
-      />
+      <div className={style.inputs}>
+        <Button
+          className={style.buttonSubmit}
+          onClick={() => {
+            editTalent();
+            setShow(!show);
+          }}
+          caption="Edit"
+        />
+      </div>
     </div>
   );
 };
