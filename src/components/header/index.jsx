@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
 import styles from './styles.module.scss';
 import Modal from '../modal';
 import Input from '../Input';
 import Button from '../button';
+import Registration from '../../features/signUp/user';
+import { signIn } from '../../features/signIn/userSlice';
 
 function Header() {
-  const onRegister = () => {
-
-  };
-
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const dispatch = useDispatch(signIn);
 
   return (
     <div>
@@ -93,6 +94,7 @@ function Header() {
               <Button
                 className={styles.buttonSubmit}
                 onClick={() => {
+                  dispatch(signIn({ email, password }));
                   setShowLogin(!showLogin);
                 }}
                 caption="sign in"
@@ -107,53 +109,55 @@ function Header() {
             setShowRegister(!showRegister);
           }}
         >
-          {{
-            title: 'Sign Up',
-            modalBody: (
-              <div className={styles.modalBody}>
-                <div className={styles.inputs}>
-                  <Input
-                    placeholder="name"
-                    type="text"
-                    value={name}
-                    onChange={setName}
-                  />
+            {{
+              title: 'Sign Up',
+              modalBody: (
+                <div className={styles.modalBody}>
+                  <div className={styles.inputs}>
+                    <Input
+                      placeholder="name"
+                      type="text"
+                      value={username}
+                      onChange={setName}
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <Input
+                      placeholder="email"
+                      type="text"
+                      value={email}
+                      onChange={setEmail}
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <Input
+                      placeholder="password"
+                      type="password"
+                      value={password}
+                      onChange={setPassword}
+                    />
+                  </div>
+                  <div className={styles.inputs}>
+                    <Input
+                      placeholder="confirm password"
+                      type="password"
+                      value={confirmPassword}
+                      onChange={setConfirmPassword}
+                    />
+                  </div>
                 </div>
-                <div className={styles.inputs}>
-                  <Input
-                    placeholder="email"
-                    type="text"
-                    value={email}
-                    onChange={setEmail}
-                  />
-                </div>
-                <div className={styles.inputs}>
-                  <Input
-                    placeholder="password"
-                    type="password"
-                    value={password}
-                    onChange={setPassword}
-                  />
-                </div>
-                <div className={styles.inputs}>
-                  <Input
-                    placeholder="confirm password"
-                    type="password"
-                    value={confirmPassword}
-                    onChange={setConfirmPassword}
-                  />
-                </div>
-              </div>
-            ),
-            footer: (
-              <Button
-                className={styles.buttonSubmit}
-                onClick={() => {
-                  onRegister();
-                }}
-                caption="Create Account"
-              />),
-          }}
+              ),
+              footer: (
+
+                <Button
+                  className={styles.buttonSubmit}
+                  onClick={() => {
+                    Registration(username, email, password, confirmPassword);
+                  }}
+                  caption="Create Account"
+                />
+              ),
+            }}
         </Modal>
         )}
       </div>
