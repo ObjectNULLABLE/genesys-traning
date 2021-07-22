@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './styles.module.scss';
 import Input from '../../components/Input';
 import Button from '../../components/button';
+import { signIn } from './userSlice';
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const [showLogin, setShowLogin] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +35,10 @@ const SignIn = () => {
         <Button
           className={styles.buttonSubmit}
           onClick={() => {
+            dispatch(signIn({
+              email,
+              password,
+            }));
             setShowLogin(!showLogin);
           }}
           caption="sign in"
