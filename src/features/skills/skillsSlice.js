@@ -8,15 +8,21 @@ const skillsSlice = createSlice({
   },
   reducers: {
     addSkillAction(state, action) {
-      state.skills = [...state.skills, action.payload];
+      state.data = [...state.data, action.payload];
     },
-    deleteSkillsAction(state, action) {
+    deleteSkillAction(state, action) {
       state.data = state.data.filter(
         (skill) => skill.name !== action.payload.name,
       );
+    },
+    updateSkillAction(state, action) {
+      const index = state.data.findIndex(
+        (quality) => quality.id === action.payload.id,
+      );
+      state.data[index] = action.payload;
     },
   },
 });
 
 export default skillsSlice.reducer;
-export const { addSkillAction, deleteSkillsAction } = skillsSlice.actions;
+export const { addSkillAction, deleteSkillAction, updateSkillAction } = skillsSlice.actions;

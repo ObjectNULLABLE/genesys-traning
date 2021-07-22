@@ -5,7 +5,11 @@ import sources from './sourcesData.json';
 const addSourceDB = createAsyncThunk('sources/addSourceDB',
   async (sourceData) => {
     try {
-      const response = await axios.post('http://localhost:4000/api/sources/:lang', sourceData);
+      const response = await axios.post('http://localhost:4000/api/sources/:lang', sourceData, {
+        headers: {
+          'x-access-token': localStorage.getItem('accessToken'),
+        },
+      });
       console.log(response.data);
     } catch (e) {
       console.log(e.data.message);

@@ -7,16 +7,25 @@ const qualitiesSlice = createSlice({
     data: qualities,
   },
   reducers: {
-    addQualitiesAction(state, action) {
-      state.qualities = [...state.qualities, action.payload];
+    addQualityAction(state, action) {
+      state.data = [...state.data, action.payload];
     },
-    deleteQualitiesAction(state, action) {
-      state.data = state.data.filter(
-        (quality) => quality.name !== action.payload.name,
+    deleteQualityAction(state, action) {
+      state.data = [
+        ...state.data.filter((item) => item.id !== action.payload)];
+    },
+    updateQualityAction(state, action) {
+      const index = state.data.findIndex(
+        (quality) => quality.id === action.payload.id,
       );
+      state.data[index] = action.payload;
     },
   },
 });
 
 export default qualitiesSlice.reducer;
-export const { addQualitiesAction, deleteQualitiesAction } = qualitiesSlice.actions;
+export const {
+  addQualityAction,
+  deleteQualityAction,
+  updateQualityAction,
+} = qualitiesSlice.actions;

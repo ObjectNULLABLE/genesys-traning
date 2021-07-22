@@ -1,8 +1,7 @@
 .modal
 {
     background-color: white;
-    width:20rem;
-    border-radius: 20px;
+    width:30rem;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -16,7 +15,6 @@
         background-color: rgb(41, 15, 15);
         color:white;
         font-family:Verdana, Geneva, Tahoma, sans-serif;
-        border-radius: 20px 20px 0 0;
         display: flex;
         .cross{
             padding-right: 1rem;
@@ -33,5 +31,4 @@
         width:100%;
         
     }
-
 }
