@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './styles.module.scss';
 import Input from '../../components/Input';
 import Button from '../../components/button';
+import signUp from './signUp';
 
 const SignUp = () => {
-  const onRegister = () => {
-
-  };
-  const [name, setName] = useState('');
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -20,8 +20,8 @@ const SignUp = () => {
           <Input
             placeholder="name"
             type="text"
-            value={name}
-            onChange={setName}
+            value={username}
+            onChange={setUsername}
           />
         </div>
         <div className={styles.inputs}>
@@ -52,7 +52,11 @@ const SignUp = () => {
         <Button
           className={styles.buttonSubmit}
           onClick={() => {
-            onRegister();
+            dispatch(signUp({
+              username,
+              email,
+              password,
+            }));
           }}
           caption="Create Account"
         />
